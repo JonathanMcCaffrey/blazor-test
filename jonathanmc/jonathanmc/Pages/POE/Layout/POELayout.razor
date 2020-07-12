@@ -16,15 +16,17 @@
 
 @code {
     #region varibles
-    int minX = 160;
-    int minY = 160;
+    int minX = 153;
+    int minY = 559;
     int maxX = 560;
-    int maxY = 560;
+    int maxY = 153;
 
-    int xOffset = 23;
+    int xOffset = 6;
+    int yOffset = 6;
+
 
     int medSquareTileDimenions = 40;
-    int largeCircleTileDimension = 69;
+    int largeCircleTileDimension = 30;//69;
 
     private int currentCount = 0;
 
@@ -32,8 +34,9 @@
 
     string layoutData = "";
 
-    string tileUsed = "Water Tile";
-    string tileHash = "1179014731";
+    string tileUsed = "Grass Patch";//"Water Tile";
+    string tileHash = "3856837925";//"1179014731";
+    string tileVariant = "4";//"22";
 
     string sandTile = "Sand Ground";
     string sandTileHash = "1900098565";
@@ -47,16 +50,37 @@
     string defaultRotation = "0";
     string invertedRotation = "180???"; // What's the 180 degree rotation value in POE? 
     string flippedValue = "1";
+
+    //Min = { Hash=1179014731, X=153, Y=559, Rot=0, Flip=0, Var=22 }
+    //Max = { Hash=1179014731, X=560, Y=153, Rot=0, Flip=0, Var=22 }
+
+
     #endregion
 
     private void GenerateSquareLayout()
     {
         #region main fill
-        for (int x = minX + xOffset; x < maxX; x += largeCircleTileDimension)
+
+        var random = new Random();
+        var grassDifference = 24;
+
+
+
+        for (int x = minX + xOffset; x <= maxX; x += largeCircleTileDimension)
         {
-            for (int y = minY; y < maxY; y += largeCircleTileDimension)
+            for (int y = minY - yOffset; y >= maxY; y -= largeCircleTileDimension)
             {
-                layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={largeSquareVariant} }}\n";
+                var xRand = random.NextDouble() * grassDifference;
+                var yRand = random.NextDouble() * grassDifference;
+
+                var newX = xRand + x;
+                var newY = yRand + y;
+
+                newX = newX < minX ? newX = minX : newX > maxX ? maxX: newX;
+                newY = newY > minY ? newY = minY : newY < maxY ? maxY : newY;
+
+
+                layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={tileVariant} }}\n";
             }
         }
         #endregion
@@ -68,10 +92,10 @@
             layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={x}, Y={maxY}, Rot={defaultRotation}, Flip={flippedValue}, Var={largeSquareVariant} }}\n";
         }*/
 
-        for (int y = minY; y < maxY; y += largeCircleTileDimension)
+        /*for (int y = minY; y < maxY; y += largeCircleTileDimension)
         {
             layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={minX}, Y={y}, Rot={defaultRotation}, Flip={flippedValue}, Var={largeSquareVariant} }}\n";
-        }
+        }*/
         #endregion
     }
 
