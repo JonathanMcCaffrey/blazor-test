@@ -21,8 +21,10 @@
     int maxX = 560;
     int maxY = 560;
 
+    int xOffset = 23;
+
     int medSquareTileDimenions = 40;
-    int largeCircleTileDimension = 60;
+    int largeCircleTileDimension = 69;
 
     private int currentCount = 0;
 
@@ -32,6 +34,10 @@
 
     string tileUsed = "Water Tile";
     string tileHash = "1179014731";
+
+    string sandTile = "Sand Ground";
+    string sandTileHash = "1900098565";
+    string sandTileVariant = "2";
 
     string medSquareVariant = "21";
     string largeSquareVariant = "22";
@@ -46,7 +52,7 @@
     private void GenerateSquareLayout()
     {
         #region main fill
-        for (int x = minX; x < maxX; x += largeCircleTileDimension)
+        for (int x = minX + xOffset; x < maxX; x += largeCircleTileDimension)
         {
             for (int y = minY; y < maxY; y += largeCircleTileDimension)
             {
