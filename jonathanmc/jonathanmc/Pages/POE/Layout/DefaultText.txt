@@ -1,0 +1,5 @@
+﻿Language = "English"
+Hideout Name = "Celestial Nebula Hideout"
+Hideout Hash = 35022
+Music Name = "Flooded Depths"
+Music Hash = 17824

@@ -1,0 +1,81 @@
+﻿@page "/poe/layout"
+
+<h1>POE Hideout Layout</h1>
+
+<p>
+    Generate a blank Celestial Nebula Hideout layout, using one of the new ground tile decorations.
+</p>
+
+<p>Info: Since the POE layouts are in JSON, it's easy enough to customly create and import the data, rather then manually add each item with the in-game editor.</p>
+
+<p>Current count: @currentCount</p>
+
+<pre>@layoutData</pre>
+
+<button class="btn btn-primary" @onclick="GenerateSquareLayout">Click me</button>
+
+@code {
+    #region varibles
+    int minX = 160;
+    int minY = 160;
+    int maxX = 560;
+    int maxY = 560;
+
+    int medSquareTileDimenions = 40;
+    int largeCircleTileDimension = 60;
+
+    private int currentCount = 0;
+
+    string defaultInfo = "";
+
+    string layoutData = "";
+
+    string tileUsed = "Water Tile";
+    string tileHash = "1179014731";
+
+    string medSquareVariant = "21";
+    string largeSquareVariant = "22";
+    string largeCircleVariant = "26";
+
+
+    string defaultRotation = "0";
+    string invertedRotation = "180???"; // What's the 180 degree rotation value in POE? 
+    string flippedValue = "1";
+    #endregion
+
+    private void GenerateSquareLayout()
+    {
+        #region main fill
+        for (int x = minX; x < maxX; x += largeCircleTileDimension)
+        {
+            for (int y = minY; y < maxY; y += largeCircleTileDimension)
+            {
+                layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={largeSquareVariant} }}\n";
+            }
+        }
+        #endregion
+
+        #region flip to fill edges
+        for (int x = minX; x < maxX; x += largeCircleTileDimension)
+        {
+            layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={x}, Y={maxY}, Rot={defaultRotation}, Flip={flippedValue}, Var={largeSquareVariant} }}\n";
+        }
+
+        for (int y = minY; y < maxY; y += largeCircleTileDimension)
+        {
+            layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={minX}, Y={y}, Rot={defaultRotation}, Flip={flippedValue}, Var={largeSquareVariant} }}\n";
+        }
+        #endregion
+    }
+
+    private void GenerateCircleLayout()
+    {
+        for (int x = minX; x < maxX; x += largeCircleTileDimension)
+        {
+            for (int y = minY; y < maxY; y += largeCircleTileDimension)
+            {
+                layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={largeCircleVariant} }}\n";
+            }
+        }
+    }
+}
