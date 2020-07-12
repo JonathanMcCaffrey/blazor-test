@@ -56,10 +56,11 @@
         #endregion
 
         #region flip to fill edges
+        /* // Unused
         for (int x = minX; x < maxX; x += largeCircleTileDimension)
         {
             layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={x}, Y={maxY}, Rot={defaultRotation}, Flip={flippedValue}, Var={largeSquareVariant} }}\n";
-        }
+        }*/
 
         for (int y = minY; y < maxY; y += largeCircleTileDimension)
         {
