@@ -1,10 +1,6 @@
 @page "/information"
 @inject HttpClient Http
 
-<h1>Information</h1>
-
-<p>To be implemented. See <a href="https://www.reddit.com/r/pathofexile/comments/hq1s4p/changing_celestial_nebula_hideout_ground/">this</a> Reddit post for some information on editing the hideout file.</p>
-
 @((MarkupString)markdown)
 
 
@@ -13,6 +9,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        markdown = Markdig.Markdown.ToHtml(await Http.GetStringAsync("markdown/test.md"));
+        markdown = Markdig.Markdown.ToHtml(await Http.GetStringAsync("markdown/information.md"));
     }
 }
