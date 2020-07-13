@@ -1,12 +1,28 @@
-﻿@page "/poe/layout"
+﻿@page "/poe/hideout"
 
-<h1>POE Hideout Layout</h1>
+<h1>POE Base Hideout Generator</h1>
 
-<p>
-    Generate a blank Celestial Nebula Hideout layout, using one of the new ground tile decorations.
-</p>
 
-<p>Info: Since the POE layouts are in plain-text, it's easy enough to customly create and import the data, rather then manually add each item with the in-game editor.</p>
+<div class="alert alert-primary" role="alert">
+    Tool for editing hideout data. This is not a comprehensive hideout design tool, but more of a branching off point to get you started!
+</div>
+
+This tool expects the usage of the <a href="https://pathofexile.gamepedia.com/Celestial_Nebula_Hideout">Celestial Nebula Hideout</a>, and is currently not tested for any other hideout variant.
+
+
+<div class="dropdown">
+    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown link
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+</div>
+
+<p></p>
 
 <p>Current count: @currentCount</p>
 
@@ -82,7 +98,7 @@
                 var newX = xRand + x;
                 var newY = yRand + y;
 
-                newX = newX < minX ? newX = minX : newX > maxX ? maxX: newX;
+                newX = newX < minX ? newX = minX : newX > maxX ? maxX : newX;
                 newY = newY > minY ? newY = minY : newY < maxY ? maxY : newY;
 
 
