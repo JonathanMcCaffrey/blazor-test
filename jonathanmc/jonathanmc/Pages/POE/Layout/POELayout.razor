@@ -1,36 +1,129 @@
 ﻿@page "/poe/hideout"
+@inject HttpClient Http
 
 <h1>POE Base Hideout Generator</h1>
-
 
 <div class="alert alert-primary" role="alert">
     Tool for editing hideout data. This is not a comprehensive hideout design tool, but more of a branching off point to get you started!
 </div>
 
-This tool expects the usage of the <a href="https://pathofexile.gamepedia.com/Celestial_Nebula_Hideout">Celestial Nebula Hideout</a>, and is currently not tested for any other hideout variant.
+<p>
+    This tool expects the usage of the <a href="https://pathofexile.gamepedia.com/Celestial_Nebula_Hideout">Celestial Nebula Hideout</a>, and is currently not tested for any other hideout variant.
+</p>
+
+@if (groundData == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <form>
+        <div class="form-group">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="ground" checked @onchange="eventArgs => { GroundToggle(eventArgs.Value); }" />
+                <label class="custom-control-label" for="ground">Enable custom ground tile.</label>
+            </div>
+
+            <div class="form-group row">
+                <label for="ground">Ground Choice</label>
+                <select disabled="@groundDisabled" class="form-control" @bind="@SelectedGround">
+                    <option></option>
+                    @foreach (var ground in groundData)
+                    {
+                        <option value="@ground.Key">@ground.Name (@ground.Var)</option>
+                    }
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="water" checked @onchange="eventArgs => { WaterToggle(eventArgs.Value); }" />
+                <label class="custom-control-label" for="water">Enable custom ground tile.</label>
+            </div>
+
+            <div class="form-group row">
+                <label for="ground">Water Choice</label>
+                <select disabled="@waterDisabled" class="form-control" @bind="@SelectedWater">
+                    <option></option>
+                    @foreach (var water in waterData)
+                    {
+                        <option value="@water.Key">@water.Name (@water.Var)</option>
+                    }
+                </select>
+            </div>
+
+        </div>
 
 
-<div class="dropdown">
-    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Dropdown link
-    </a>
+        <div class="form-group">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="grassPatches" checked @onchange="eventArgs => { GrassPatchesToggle(eventArgs.Value); }" />
+                <label class="custom-control-label" for="grassPatches">Enable custom ground tile.</label>
+            </div>
 
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-    </div>
-</div>
+            <div class="form-group row">
+                <label for="ground">Grass Patches Choice</label>
+                <select disabled="@grassPatchesDisabled" class="form-control" @bind="@SelectedGrass">
+                    <option></option>
+                    @foreach (var grassPatches in grassPatchesData)
+                    {
+                        <option value="@grassPatches.Key">@grassPatches.Name (@grassPatches.Var)</option>
+                    }
+                </select>
+            </div>
 
-<p></p>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Placement Chaos</label>
+                <div class="col-10">
+                    <input class="form-control" type="number" value="24">
+                </div>
+                <small id="chaosHelp" class="form-text text-muted">Randomness of the placement, for more organically placed grass.</small>
+            </div>
 
-<p>Current count: @currentCount</p>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Extra Spacing</label>
+                <div class="col-10">
+                    <input class="form-control" type="number" value="0">
+                </div>
+                <small id="spacingHelp" class="form-text text-muted">Extra spacing between grass, to spread out grass patches.</small>
+            </div>
 
-<pre>@layoutData</pre>
+        </div>
 
-<button class="btn btn-primary" @onclick="GenerateSquareLayout">Click me</button>
+    </form>
+
+    <pre>@layoutData</pre>
+
+    <button class="btn btn-primary" @onclick="Generate">Generate</button>
+}
 
 @code {
+
+    public bool groundDisabled { get; set; }
+    void GroundToggle(object checkedValue)
+    {
+        groundDisabled = !(bool)checkedValue;
+    }
+
+    public bool waterDisabled { get; set; }
+    void WaterToggle(object checkedValue)
+    {
+        waterDisabled = !(bool)checkedValue;
+    }
+
+    public bool grassPatchesDisabled { get; set; }
+    void GrassPatchesToggle(object checkedValue)
+    {
+        grassPatchesDisabled = !(bool)checkedValue;
+    }
+
+    string SelectedGround { get; set; }
+    string SelectedWater { get; set; }
+    string SelectedGrass { get; set; }
+
     #region varibles
     int minX = 153;
     int minY = 559;
@@ -77,11 +170,81 @@ This tool expects the usage of the <a href="https://pathofexile.gamepedia.com/Ce
     //Max = { Hash=1179014731, X=560, Y=153, Rot=0, Flip=0, Var=22 }
 
 
+    public TileData[] groundData;
+    public TileData[] waterData;
+    public TileData[] grassPatchesData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        groundData = await Http.GetFromJsonAsync<TileData[]>("data/ground.json");
+        waterData = await Http.GetFromJsonAsync<TileData[]>("data/water.json");
+        grassPatchesData = await Http.GetFromJsonAsync<TileData[]>("data/grassPatches.json");
+    }
+
+    public class TileData
+    {
+        public string Name { get; set; }
+        public string Var { get; set; }
+        public string Hash { get; set; }
+        public int Key { get; set; }
+    }
+
     #endregion
 
-    private void GenerateSquareLayout()
+
+
+    private void Generate()
     {
-        #region main fill
+
+        var random = new Random();
+        var grassDifference = 24;
+
+        for (int x = minX + xOffset; x <= maxX; x += largeCircleTileDimension)
+        {
+            for (int y = minY - yOffset; y >= maxY; y -= largeCircleTileDimension)
+            {
+                var xRand = random.NextDouble() * grassDifference;
+                var yRand = random.NextDouble() * grassDifference;
+
+                var newX = xRand + x;
+                var newY = yRand + y;
+
+                newX = newX < minX ? newX = minX : newX > maxX ? maxX : newX;
+                newY = newY > minY ? newY = minY : newY < maxY ? maxY : newY;
+
+
+                layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={tileVariant} }}\n";
+            }
+        }
+
+    }
+
+    private void GenerateGround()
+    {
+        var random = new Random();
+        var grassDifference = 24;
+
+        for (int x = minX + xOffset; x <= maxX; x += largeCircleTileDimension)
+        {
+            for (int y = minY - yOffset; y >= maxY; y -= largeCircleTileDimension)
+            {
+                var xRand = random.NextDouble() * grassDifference;
+                var yRand = random.NextDouble() * grassDifference;
+
+                var newX = xRand + x;
+                var newY = yRand + y;
+
+                newX = newX < minX ? newX = minX : newX > maxX ? maxX : newX;
+                newY = newY > minY ? newY = minY : newY < maxY ? maxY : newY;
+
+
+                layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={tileVariant} }}\n";
+            }
+        }
+    }
+
+    private void GenerateGrassPatches()
+    {
 
         var random = new Random();
         var grassDifference = 24;
@@ -105,20 +268,8 @@ This tool expects the usage of the <a href="https://pathofexile.gamepedia.com/Ce
                 layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={tileVariant} }}\n";
             }
         }
-        #endregion
 
-        #region flip to fill edges
-        /* // Unused
-        for (int x = minX; x < maxX; x += largeCircleTileDimension)
-        {
-            layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={x}, Y={maxY}, Rot={defaultRotation}, Flip={flippedValue}, Var={largeSquareVariant} }}\n";
-        }*/
 
-        /*for (int y = minY; y < maxY; y += largeCircleTileDimension)
-        {
-            layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={minX}, Y={y}, Rot={defaultRotation}, Flip={flippedValue}, Var={largeSquareVariant} }}\n";
-        }*/
-        #endregion
     }
 
     private void GenerateCircleLayout()

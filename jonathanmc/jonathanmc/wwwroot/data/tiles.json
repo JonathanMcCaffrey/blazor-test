@@ -1,0 +1,118 @@
+{
+  "ground": [
+    {
+      "name": "Arctic Ground",
+      "hash": "2825914735",
+      "var": "1"
+    },
+    {
+      "name": "Arctic Ground",
+      "hash": "2825914735",
+      "var": "3"
+    },
+    {
+      "name": "Arctic Ground",
+      "hash": "2825914735",
+      "var": "4"
+    },
+    {
+      "name": "Arctic Ground",
+      "hash": "2825914735",
+      "var": "6"
+    },
+    {
+      "name": "Arctic Ground",
+      "hash": "2825914735",
+      "var": "9"
+    },
+    {
+      "name": "Templar Courts Ground",
+      "hash": "3738574959",
+      "var": "2"
+    },
+    {
+      "name": "Lioneye's Watch Ground",
+      "hash": "456645464",
+      "var": "2"
+    },
+    {
+      "name": "Lioneye's Watch Ground",
+      "hash": "456645464",
+      "var": "5"
+    },
+    {
+      "name": "Dirt Ground",
+      "hash": "1798490749",
+      "var": "2"
+    },
+    {
+      "name": "Grass Ground",
+      "hash": "1798490749",
+      "var": "5"
+    },
+    {
+      "name": "Grass Ground",
+      "hash": "2825914735",
+      "var": "1"
+    },
+    {
+      "name": "Sand Ground",
+      "hash": "1900098565",
+      "var": "2"
+    },
+    {
+      "name": "Sand Ground",
+      "hash": "1900098565",
+      "var": "5"
+    },
+    {
+      "name": "Wood Ground",
+      "hash": "2661512021",
+      "var": "2"
+    },
+    {
+      "name": "Wood Ground",
+      "hash": "2661512021",
+      "var": "5"
+    },
+    {
+      "name": "Sewer Ground",
+      "hash": "2521957828",
+      "var": "2"
+    },
+    {
+      "name": "Tile Ground",
+      "hash": "2382279785",
+      "var": "2"
+    }
+  ],
+  "water": [
+    {
+      "name": "Water Plane",
+      "hash": "1179014731",
+      "var": "4"
+    },
+    {
+      "name": "Water Plane",
+      "hash": "1179014731",
+      "var": "13"
+    },
+    {
+      "name": "Water Plane",
+      "hash": "1179014731",
+      "var": "22"
+    }
+  ],
+  "grassPatches": [
+    {
+      "name": "Grass Patch",
+      "hash": "3856837925",
+      "var": "4"
+    },
+    {
+      "name": "Grass Patch",
+      "hash": "3856837925",
+      "var": "13"
+    }
+  ]
+}
