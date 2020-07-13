@@ -404,9 +404,9 @@ else
         int extraOffset = extraOffset = GrassExtraSpacing / 2;
 
 
-        for (int x = minX + xOffset + extraOffset; x <= maxX; x += largeTileDimensions + GrassExtraSpacing)
+        for (int x = minX + xOffset + extraOffset; x <= maxX; x += grassPatchDimensions + GrassExtraSpacing)
         {
-            for (int y = minY - yOffset + extraOffset; y >= maxY; y -= largeTileDimensions + GrassExtraSpacing)
+            for (int y = minY - yOffset + extraOffset; y >= maxY; y -= grassPatchDimensions + GrassExtraSpacing)
             {
                 var xRand = random.NextDouble() * GrassPlacementChaos;
                 var yRand = random.NextDouble() * GrassPlacementChaos;
