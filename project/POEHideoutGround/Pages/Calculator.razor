@@ -353,7 +353,7 @@ else
         }
 
         set {
-            if (value > 0 && value < 48)
+            if (value >= 0 && value <= 48)
             {
                 _grassPlacementChaos = value;
             }
@@ -378,7 +378,7 @@ else
 
         set
         {
-            if (value > 0 && value < 48)
+            if (value >= 0 && value <= 48)
             {
                 _grassExtraSpacing = value;
             }
