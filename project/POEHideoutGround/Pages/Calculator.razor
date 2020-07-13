@@ -11,7 +11,7 @@
     This tool expects the usage of the <a href="https://pathofexile.gamepedia.com/Celestial_Nebula_Hideout">Celestial Nebula Hideout</a>, and is currently not tested for any other hideout variant.
 </p>
 
-@if (groundData == null)
+@if (groundData == null || waterData == null || grassPatchesData == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -21,13 +21,14 @@ else
         <div class="form-group">
             <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="ground" checked @onchange="eventArgs => { GroundToggle(eventArgs.Value); }" />
-                <label class="custom-control-label" for="ground">Enable custom ground tile.</label>
+                <label class="custom-control-label" for="ground">Enable ground tiles.</label>
             </div>
 
             <div class="form-group row">
                 <label for="ground">Ground Choice</label>
-                <select disabled="@groundDisabled" class="form-control" @bind="@SelectedGround">
-                    <option></option>
+                <select disabled="@groundDisabled" class="form-control" @bind="@SelectedGroundKey" >
+                    <option value="@DefaultGroundTile.Key" selected>@DefaultGroundTile.Name (@DefaultGroundTile.Var)</option>
+
                     @foreach (var ground in groundData)
                     {
                         <option value="@ground.Key">@ground.Name (@ground.Var)</option>
@@ -40,14 +41,15 @@ else
 
         <div class="form-group">
             <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="water" checked @onchange="eventArgs => { WaterToggle(eventArgs.Value); }" />
-                <label class="custom-control-label" for="water">Enable custom ground tile.</label>
+                <input type="checkbox" class="custom-control-input" id="water" @onchange="eventArgs => { WaterToggle(eventArgs.Value); }" />
+                <label class="custom-control-label" for="water">Enable water tiles.</label>
             </div>
 
             <div class="form-group row">
                 <label for="ground">Water Choice</label>
-                <select disabled="@waterDisabled" class="form-control" @bind="@SelectedWater">
-                    <option></option>
+                <select disabled="@waterDisabled" class="form-control" @bind="@SelectedWaterKey">
+                    <option value="@DefaultWaterTile.Key" selected>@DefaultWaterTile.Name (@DefaultWaterTile.Var)</option>
+
                     @foreach (var water in waterData)
                     {
                         <option value="@water.Key">@water.Name (@water.Var)</option>
@@ -60,14 +62,15 @@ else
 
         <div class="form-group">
             <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="grassPatches" checked @onchange="eventArgs => { GrassPatchesToggle(eventArgs.Value); }" />
-                <label class="custom-control-label" for="grassPatches">Enable custom ground tile.</label>
+                <input type="checkbox" class="custom-control-input" id="grassPatches" @onchange="eventArgs => { GrassPatchesToggle(eventArgs.Value); }" />
+                <label class="custom-control-label" for="grassPatches">Enable grass patches.</label>
             </div>
 
             <div class="form-group row">
                 <label for="ground">Grass Patches Choice</label>
-                <select disabled="@grassPatchesDisabled" class="form-control" @bind="@SelectedGrass">
-                    <option></option>
+                <select disabled="@grassPatchesDisabled" class="form-control" @bind="@SelectedGrassPatchesKey">
+                    <option value="@DefaultGrassPatchesTile.Key" selected>@DefaultGrassPatchesTile.Name (@DefaultGrassPatchesTile.Var)</option>
+
                     @foreach (var grassPatches in grassPatchesData)
                     {
                         <option value="@grassPatches.Key">@grassPatches.Name (@grassPatches.Var)</option>
@@ -78,7 +81,7 @@ else
             <div class="form-group row">
                 <label class="col-2 col-form-label">Placement Chaos</label>
                 <div class="col-10">
-                    <input class="form-control" type="number" value="24">
+                    <input disabled="@grassPatchesDisabled" class="form-control" type="number" @bind="GrassPlacementChaos">
                 </div>
                 <small id="chaosHelp" class="form-text text-muted">Randomness of the placement, for more organically placed grass.</small>
             </div>
@@ -86,7 +89,7 @@ else
             <div class="form-group row">
                 <label class="col-2 col-form-label">Extra Spacing</label>
                 <div class="col-10">
-                    <input class="form-control" type="number" value="0">
+                    <input disabled="@grassPatchesDisabled" class="form-control" type="number" @bind="GrassExtraSpacing">
                 </div>
                 <small id="spacingHelp" class="form-text text-muted">Extra spacing between grass, to spread out grass patches.</small>
             </div>
@@ -98,31 +101,42 @@ else
     <pre>@layoutData</pre>
 
     <button class="btn btn-primary" @onclick="Generate">Generate</button>
+
+        @if(currentCount > 0)
+        {
+            <p><br/>@currentCount tiles generated.</p>
+        }
+   
 }
 
 @code {
 
-    public bool groundDisabled { get; set; }
+    static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var:"2", hash: "1798490749", key: 9);
+    static TileData DefaultWaterTile = new TileData(name: "Water Plane", var: "22", hash: "1179014731", key: 3);
+    static TileData DefaultGrassPatchesTile = new TileData(name: "Grass Patch", var: "4", hash: "3856837925", key: 1);
+
+
+    public bool groundDisabled { get; set; } = false;
     void GroundToggle(object checkedValue)
     {
         groundDisabled = !(bool)checkedValue;
     }
 
-    public bool waterDisabled { get; set; }
+    public bool waterDisabled { get; set; } = true;
     void WaterToggle(object checkedValue)
     {
         waterDisabled = !(bool)checkedValue;
     }
 
-    public bool grassPatchesDisabled { get; set; }
+    public bool grassPatchesDisabled { get; set; } = true;
     void GrassPatchesToggle(object checkedValue)
     {
         grassPatchesDisabled = !(bool)checkedValue;
     }
 
-    string SelectedGround { get; set; }
-    string SelectedWater { get; set; }
-    string SelectedGrass { get; set; }
+    int SelectedGroundKey { get; set; } = DefaultGroundTile.Key;
+    int SelectedWaterKey { get; set; } = DefaultWaterTile.Key;
+    int SelectedGrassPatchesKey { get; set; } = DefaultGrassPatchesTile.Key;
 
     #region varibles
     int minX = 153;
@@ -134,12 +148,11 @@ else
     int yOffset = 6;
 
 
-    int medSquareTileDimenions = 40;
-    int largeCircleTileDimension = 30;//69;
+    int largeTileDimensions = 69;
+
+    int grassPatchDimensions = 30;
 
     private int currentCount = 0;
-
-    string defaultInfo = "";
 
     string layoutData = "";
 
@@ -187,7 +200,82 @@ else
         public string Var { get; set; }
         public string Hash { get; set; }
         public int Key { get; set; }
+
+        public TileData() { }
+        public TileData(string name, string var, string hash, int key)
+        {
+            Name = name;
+            Var = var;
+            Hash = hash;
+            Key = key;
+        }
     }
+
+
+    public TileData SelectedGroundTile
+    {
+        get
+        {
+            if(groundDisabled)
+            {
+                return null;
+            }
+
+            foreach (var tile in groundData)
+            {
+                if (tile.Key == SelectedGroundKey)
+                {
+                    return tile;
+                }
+            }
+
+            return null;
+        }
+    }
+
+    public TileData SelectedWaterTile
+    {
+        get
+        {
+            if (waterDisabled)
+            {
+                return null;
+            }
+
+            foreach (var tile in waterData)
+            {
+                if (tile.Key == SelectedWaterKey)
+                {
+                    return tile;
+                }
+            }
+
+            return null;
+        }
+    }
+
+    public TileData SelectedGrassPatchesTile
+    {
+        get
+        {
+            if (grassPatchesDisabled)
+            {
+                return null;
+            }
+
+            foreach (var tile in grassPatchesData)
+            {
+                if (tile.Key == SelectedGrassPatchesKey)
+                {
+                    return tile;
+                }
+            }
+
+            return null;
+        }
+    }
+
+
 
     #endregion
 
@@ -195,88 +283,158 @@ else
 
     private void Generate()
     {
+        ClearLayoutData();
+        GenerateGround();
+        GenerateWater();
+        GenerateGrassPatches();
 
-        var random = new Random();
-        var grassDifference = 24;
+        ErrorCatching();
+    }
 
-        for (int x = minX + xOffset; x <= maxX; x += largeCircleTileDimension)
+    private void ClearLayoutData()
+    {
+        currentCount = 0;
+        layoutData = "";
+    }
+
+    private void ErrorCatching()
+    {
+        if(layoutData == "")
         {
-            for (int y = minY - yOffset; y >= maxY; y -= largeCircleTileDimension)
-            {
-                var xRand = random.NextDouble() * grassDifference;
-                var yRand = random.NextDouble() * grassDifference;
-
-                var newX = xRand + x;
-                var newY = yRand + y;
-
-                newX = newX < minX ? newX = minX : newX > maxX ? maxX : newX;
-                newY = newY > minY ? newY = minY : newY < maxY ? maxY : newY;
-
-
-                layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={tileVariant} }}\n";
-            }
+            layoutData = "No layout could be generated. Please ensure you have selected a tile, and you have it's generation enabled.";
         }
-
     }
 
     private void GenerateGround()
     {
-        var random = new Random();
-        var grassDifference = 24;
+        if(SelectedGroundTile == null) { return; }
 
-        for (int x = minX + xOffset; x <= maxX; x += largeCircleTileDimension)
+        int debugLimit = 0;
+        for (int x = minX + xOffset; x <= maxX; x += largeTileDimensions)
         {
-            for (int y = minY - yOffset; y >= maxY; y -= largeCircleTileDimension)
+            for (int y = minY - yOffset; y >= maxY; y -= largeTileDimensions)
             {
-                var xRand = random.NextDouble() * grassDifference;
-                var yRand = random.NextDouble() * grassDifference;
-
-                var newX = xRand + x;
-                var newY = yRand + y;
-
-                newX = newX < minX ? newX = minX : newX > maxX ? maxX : newX;
-                newY = newY > minY ? newY = minY : newY < maxY ? maxY : newY;
+                layoutData += $"{SelectedGroundTile.Name} = {{ Hash={SelectedGroundTile.Hash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={SelectedGroundTile.Var} }}\n";
 
 
-                layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={tileVariant} }}\n";
+                currentCount++;
+                if (debugLimit++ > 10)
+                {
+                    //    return;
+                }
+            }
+        }
+    }
+
+
+    private void GenerateWater()
+    {
+        if (SelectedWaterTile == null) { return; }
+
+
+        for (int x = minX + xOffset; x <= maxX; x += largeTileDimensions)
+        {
+            for (int y = minY - yOffset; y >= maxY; y -= largeTileDimensions)
+            {
+                layoutData += $"{SelectedWaterTile.Name} = {{ Hash={SelectedWaterTile.Hash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={SelectedWaterTile.Var} }}\n";
+
+                currentCount++;
+            }
+        }
+    }
+
+
+
+    private int _grassPlacementChaos = 24;
+    public int GrassPlacementChaos {
+        get {
+            return _grassPlacementChaos;
+        }
+
+        set {
+            if (value > 0 && value < 48)
+            {
+                _grassPlacementChaos = value;
+            }
+            else if(value < 0)
+            {
+                _grassPlacementChaos = 0;
+            }
+            else if (value > 48)
+            {
+                _grassPlacementChaos = 48;
+            }
+        }
+    }
+
+    private int _grassExtraSpacing = 0;
+    public int GrassExtraSpacing
+    {
+        get
+        {
+            return _grassExtraSpacing;
+        }
+
+        set
+        {
+            if (value > 0 && value < 48)
+            {
+                _grassExtraSpacing = value;
+            }
+            else if (value < 0)
+            {
+                _grassExtraSpacing = 0;
+            }
+            else if (value > 48)
+            {
+                _grassExtraSpacing = 48;
             }
         }
     }
 
     private void GenerateGrassPatches()
     {
+        if (SelectedGrassPatchesTile == null) { return; }
 
         var random = new Random();
-        var grassDifference = 24;
+
+        int debugLimit = 0;
+
+        int extraOffset = extraOffset = GrassExtraSpacing / 2;
 
 
-
-        for (int x = minX + xOffset; x <= maxX; x += largeCircleTileDimension)
+        for (int x = minX + xOffset + extraOffset; x <= maxX; x += largeTileDimensions + GrassExtraSpacing)
         {
-            for (int y = minY - yOffset; y >= maxY; y -= largeCircleTileDimension)
+            for (int y = minY - yOffset + extraOffset; y >= maxY; y -= largeTileDimensions + GrassExtraSpacing)
             {
-                var xRand = random.NextDouble() * grassDifference;
-                var yRand = random.NextDouble() * grassDifference;
+                var xRand = random.NextDouble() * GrassPlacementChaos;
+                var yRand = random.NextDouble() * GrassPlacementChaos;
 
-                var newX = xRand + x;
-                var newY = yRand + y;
+                int newX = (int)(xRand + x);
+                int newY = (int)(yRand + y);
 
                 newX = newX < minX ? newX = minX : newX > maxX ? maxX : newX;
                 newY = newY > minY ? newY = minY : newY < maxY ? maxY : newY;
 
+                layoutData += $"{SelectedGrassPatchesTile.Name} = {{ Hash={SelectedGrassPatchesTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedGrassPatchesTile.Var} }}\n";
 
-                layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={tileVariant} }}\n";
+                currentCount++;
+
+                if (debugLimit++ > 10)
+                {
+                    //    return;
+                }
+
+
             }
         }
-
-
     }
 
     private void GenerateCircleLayout()
     {
-        for (int x = minX; x < maxX; x += largeCircleTileDimension)
+        for (int x = minX; x < maxX; x += largeTileDimensions)
         {
-            for (int y = minY; y < maxY; y += largeCircleTileDimension)
+            for (int y = minY; y < maxY; y += largeTileDimensions)
             {
                 layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={largeCircleVariant} }}\n";
             }
