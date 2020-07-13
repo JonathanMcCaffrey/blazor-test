@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Arctic Ground",
+    "hash": "2825914735",
+    "var": "1",
+    "key": 1
+  },
+  {
+    "name": "Arctic Ground",
+    "hash": "2825914735",
+    "var": "3",
+    "key": 2
+  },
+  {
+    "name": "Arctic Ground",
+    "hash": "2825914735",
+    "var": "4",
+    "key": 3
+  },
+  {
+    "name": "Arctic Ground",
+    "hash": "2825914735",
+    "var": "6",
+    "key": 4
+  },
+  {
+    "name": "Arctic Ground",
+    "hash": "2825914735",
+    "var": "9",
+    "key": 5
+  },
+  {
+    "name": "Templar Courts Ground",
+    "hash": "3738574959",
+    "var": "2",
+    "key": 6
+  },
+  {
+    "name": "Lioneye's Watch Ground",
+    "hash": "456645464",
+    "var": "2",
+    "key": 7
+  },
+  {
+    "name": "Lioneye's Watch Ground",
+    "hash": "456645464",
+    "var": "5",
+    "key": 8
+  },
+  {
+    "name": "Dirt Ground",
+    "hash": "1798490749",
+    "var": "2",
+    "key": 9
+  },
+  {
+    "name": "Grass Ground",
+    "hash": "1798490749",
+    "var": "5",
+    "key": 10
+  },
+  {
+    "name": "Grass Ground",
+    "hash": "2825914735",
+    "var": "1",
+    "key": 11
+  },
+  {
+    "name": "Sand Ground",
+    "hash": "1900098565",
+    "var": "2",
+    "key": 12
+  },
+  {
+    "name": "Sand Ground",
+    "hash": "1900098565",
+    "var": "5",
+    "key": 13
+  },
+  {
+    "name": "Wood Ground",
+    "hash": "2661512021",
+    "var": "2",
+    "key": 14
+  },
+  {
+    "name": "Wood Ground",
+    "hash": "2661512021",
+    "var": "5",
+    "key": 15
+  },
+  {
+    "name": "Sewer Ground",
+    "hash": "2521957828",
+    "var": "2",
+    "key": 16
+  },
+  {
+    "name": "Tile Ground",
+    "hash": "2382279785",
+    "var": "2",
+    "key": 17
+  }
+]
