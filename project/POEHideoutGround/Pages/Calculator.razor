@@ -148,41 +148,19 @@ else
     int xOffset = 6;
     int yOffset = 6;
 
-
     int largeTileDimensions = 69;
-
     int grassPatchDimensions = 30;
 
     private int currentCount = 0;
 
     string layoutData = "";
 
-    string tileUsed = "Grass Patch";//"Water Tile";
-    string tileHash = "3856837925";//"1179014731";
-    string tileVariant = "4";//"22";
-
-    string sandTile = "Sand Ground";
-    string sandTileHash = "1900098565";
-    string sandTileVariant = "2";
-
-    string medSquareVariant = "21";
-    string largeSquareVariant = "22";
-    string largeCircleVariant = "26";
-
-
     string defaultRotation = "0";
-    string invertedRotation = "32768";
     // Rotation Data
     //Rot=49152
     //Rot=32768
     //Rot=16385
-    //Rot
-
-    string flippedValue = "1";
-
-    //Min = { Hash=1179014731, X=153, Y=559, Rot=0, Flip=0, Var=22 }
-    //Max = { Hash=1179014731, X=560, Y=153, Rot=0, Flip=0, Var=22 }
-
+    //Rot=1
 
     public TileData[] groundData;
     public TileData[] waterData;
@@ -190,6 +168,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        //TODO: This loading seems too slow. Look into why, and speed this up
         groundData = await Http.GetFromJsonAsync<TileData[]>("data/ground.json");
         waterData = await Http.GetFromJsonAsync<TileData[]>("data/water.json");
         grassPatchesData = await Http.GetFromJsonAsync<TileData[]>("data/grassPatches.json");
@@ -427,17 +406,6 @@ else
                 }
 
 
-            }
-        }
-    }
-
-    private void GenerateCircleLayout()
-    {
-        for (int x = minX; x < maxX; x += largeTileDimensions)
-        {
-            for (int y = minY; y < maxY; y += largeTileDimensions)
-            {
-                layoutData += $"{{{tileUsed}}} = {{ Hash={tileHash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={largeCircleVariant} }}\n";
             }
         }
     }
