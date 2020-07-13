@@ -1,2 +1,3 @@
-# blazor-test
-Test of Blazor
+# POE Hideout Ground
+
+Project for generating simple hideout ground.
