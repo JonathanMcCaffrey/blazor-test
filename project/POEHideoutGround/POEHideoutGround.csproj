@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\hideout\" />
+    <Folder Include="wwwroot\images\faq\" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,13 @@
 ﻿@page "/privacy-policy"
+@inject HttpClient Http
+@((MarkupString)markdown)
 
-<p><b>Does this website use cookies or collect data?</b><br />No, this website has no cookies and doesn't collect data.</p>
+@code {
+    string markdown;
 
-<p><b>Why?</b><br />Cookies and analytics are great, and highly recommended for improving the usability of a website. However, it takes time to implement features, and time hasn't been spent in this area.</p>
+    protected override async Task OnInitializedAsync()
+    {
+        markdown = Markdig.Markdown.ToHtml(await Http.GetStringAsync("markdown/privacy-policy.md"));
+    }
 
-<p><b>So this website might have cookies and data collection later?</b><br />Sure, for remembering state, and collecting usage and bug reports to improve the website. But it's currently not a priority.</p>
-
-<p><b>Can cookies and data collection be added faster?</b><br />This project is open-sourced, so you could create a fork for that feature and add some work to it, and that may get the feature in sooner.</p>
-
-<p><b>Which would be more useful?</b><br />Cookies would be, so you don't lose your state if you refresh the page. I am not sure this website is complicated enough and has enough development to warrant analytics. Suppose data collection could show if non-English speakers are using this website so that localizations could be considered. But, it's not like good translations are free, or without maintenance costs. So even if the data revealed something, the web development of this website may not act on it.</p>
+}
