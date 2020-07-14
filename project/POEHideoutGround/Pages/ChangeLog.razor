@@ -1,0 +1,12 @@
+﻿@page "/change-log"
+@inject HttpClient Http
+@((MarkupString)markdown)
+
+@code {
+        string markdown;
+
+protected override async Task OnInitializedAsync()
+    {
+        markdown = Markdig.Markdown.ToHtml(await Http.GetStringAsync("markdown/change-log.md"));
+    }
+}
