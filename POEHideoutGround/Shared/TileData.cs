@@ -28,14 +28,11 @@ namespace POEHideoutGround.Shared
         /// <summary>
         /// Unique variant/hash key used by the calculator.
         /// </summary>
-        [Parameter]
-        public int Key
+        public int Key()
         {
-            get
-            {
-                return int.Parse(Hash) * 100 + int.Parse(Var);
-            }
+            return int.Parse(Hash) * 100 + int.Parse(Var);
         }
+       
 
         /// <summary>
         /// The variant displayed to the player in-game. Which is the variant number + 1
