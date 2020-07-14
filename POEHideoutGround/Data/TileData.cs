@@ -1,5 +1,5 @@
 ﻿
-namespace POEHideoutGround.Shared
+namespace POEHideoutGround.Data
 {
     public class TileData
     {

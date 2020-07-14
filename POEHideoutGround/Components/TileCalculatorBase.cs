@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using POEHideoutGround.Shared;
+using POEHideoutGround.Data;
 using System.Collections.Generic;
 
 namespace POEHideoutGround.Components
