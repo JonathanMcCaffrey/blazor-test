@@ -8,7 +8,7 @@ In Path of Exile patch <a href="https://pathofexile.gamepedia.com/Harvest">3.11,
 
 The calculator here is to help you place these tiles in the large <a href="https://pathofexile.gamepedia.com/Celestial_Nebula_Hideout">Celestial Nebula Hideout</a> to fully cover the ground of your hideout.
 
-This tool is able to function because they POE hideout file is written in plain-text, and is actually quite easy to understand and start making minor edits. Thanks to the GGG team for that design!
+This tool is able to function because the POE hideout file is written in plain-text, and is actually quite easy to understand and to start making minor edits. Thanks to the GGG team for that design!
 
 ## Exporting the Hideout File
 
