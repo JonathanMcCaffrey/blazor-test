@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "POEHideoutGround", "POEHideoutGround\POEHideoutGround.csproj", "{23292EA3-2F37-4D33-A1F7-FF5A8CCF2963}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{D7AB2FDE-51E9-473B-A8C5-92F1FB25ABA3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{23292EA3-2F37-4D33-A1F7-FF5A8CCF2963}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23292EA3-2F37-4D33-A1F7-FF5A8CCF2963}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23292EA3-2F37-4D33-A1F7-FF5A8CCF2963}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7AB2FDE-51E9-473B-A8C5-92F1FB25ABA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7AB2FDE-51E9-473B-A8C5-92F1FB25ABA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7AB2FDE-51E9-473B-A8C5-92F1FB25ABA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7AB2FDE-51E9-473B-A8C5-92F1FB25ABA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
