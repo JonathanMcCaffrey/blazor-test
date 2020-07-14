@@ -3,7 +3,7 @@
 
 <div class="alert alert-primary" role="alert">
     Tool for editing hideout ground. <b>This is not a comprehensive hideout design tool,</b> but more of a branching off point to get you started!
-    <br/><br/>
+    <br /><br />
     If your not sure how the calculator works, check the <a href="/Information"><b>Information</b></a> section.
 </div>
 
@@ -27,12 +27,18 @@ else
 
             <div class="form-group row">
                 <label for="ground">Ground Choice</label>
-                <select disabled="@groundDisabled" class="form-control" @bind="@SelectedGroundKey" >
-                    <option value="@DefaultGroundTile.Key" selected>@DefaultGroundTile.Name @DefaultGroundTile.DisplayVar</option>
+                <select disabled="@groundDisabled" class="form-control" @bind="@SelectedGroundKey">
 
                     @foreach (var ground in groundData)
                     {
-                        <option value="@ground.Key">@ground.Name @ground.DisplayVar</option>
+                        if (@DefaultGroundTile.Hash == ground.Hash && @DefaultGroundTile.Var == ground.Var)
+                        {
+                            <option value="@ground.Key" selected>@ground.Name @ground.DisplayVar - Default</option>
+                        }
+                        else
+                        {
+                            <option value="@ground.Key">@ground.Name @ground.DisplayVar</option>
+                        }
                     }
                 </select>
 
@@ -49,11 +55,16 @@ else
             <div class="form-group row">
                 <label for="ground">Water Choice</label>
                 <select disabled="@waterDisabled" class="form-control" @bind="@SelectedWaterKey">
-                    <option value="@DefaultWaterTile.Key" selected>@DefaultWaterTile.Name @DefaultWaterTile.DisplayVar</option>
-
                     @foreach (var water in waterData)
                     {
-                        <option value="@water.Key">@water.Name @water.DisplayVar</option>
+                        if (DefaultWaterTile.Hash == water.Hash && DefaultWaterTile.Var == water.Var)
+                        {
+                            <option value="@water.Key" selected>@water.Name @water.DisplayVar - Default</option>
+                        }
+                        else
+                        {
+                            <option value="@water.Key">@water.Name @water.DisplayVar</option>
+                        }
                     }
                 </select>
             </div>
@@ -70,11 +81,16 @@ else
             <div class="form-group row">
                 <label for="ground">Grass Patches Choice</label>
                 <select disabled="@grassPatchesDisabled" class="form-control" @bind="@SelectedGrassPatchesKey">
-                    <option value="@DefaultGrassPatchesTile.Key" selected>@DefaultGrassPatchesTile.Name @DefaultGrassPatchesTile.DisplayVar</option>
-
                     @foreach (var grassPatches in grassPatchesData)
                     {
-                        <option value="@grassPatches.Key">@grassPatches.Name grassPatches.DisplayVar</option>
+                        if (DefaultGrassPatchesTile.Hash == grassPatches.Hash && DefaultGrassPatchesTile.Var == grassPatches.Var)
+                        {
+                            <option value="@grassPatches.Key" selected>@grassPatches.Name @grassPatches.DisplayVar - Default</option>
+                        }
+                        else
+                        {
+                            <option value="@grassPatches.Key">@grassPatches.Name @grassPatches.DisplayVar</option>
+                        }
                     }
                 </select>
             </div>
@@ -103,16 +119,16 @@ else
 
     <button class="btn btn-primary" @onclick="Generate">Generate</button>
 
-        @if(currentCount > 0)
-        {
-            <p><br/>@currentCount tiles generated.</p>
-        }
-   
+    @if (currentCount > 0)
+    {
+        <p><br />@currentCount tiles generated.</p>
+    }
+
 }
 
 @code {
 
-    static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var:"2", hash: "1798490749", key: 9);
+    static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var: "2", hash: "1798490749", key: 9);
     static TileData DefaultWaterTile = new TileData(name: "Water Plane", var: "22", hash: "1179014731", key: 3);
     static TileData DefaultGrassPatchesTile = new TileData(name: "Grass Patch", var: "4", hash: "3856837925", key: 1);
 
@@ -181,7 +197,7 @@ else
         public string Hash { get; set; }
         public int Key { get; set; }
 
-        public string DisplayVar { get { return (int.Parse(Var) + 1).ToString(); }  }
+        public string DisplayVar { get { return (int.Parse(Var) + 1).ToString(); } }
 
         public TileData() { }
         public TileData(string name, string var, string hash, int key)
@@ -198,7 +214,7 @@ else
     {
         get
         {
-            if(groundDisabled)
+            if (groundDisabled)
             {
                 return null;
             }
@@ -281,7 +297,7 @@ else
 
     private void ErrorCatching()
     {
-        if(layoutData == "")
+        if (layoutData == "")
         {
             layoutData = "No layout could be generated. Please ensure you have selected a tile, and you have it's generation enabled.";
         }
@@ -289,7 +305,7 @@ else
 
     private void GenerateGround()
     {
-        if(SelectedGroundTile == null) { return; }
+        if (SelectedGroundTile == null) { return; }
 
         int debugLimit = 0;
         for (int x = minX + xOffset; x <= maxX; x += largeTileDimensions)
@@ -328,17 +344,20 @@ else
 
 
     private int _grassPlacementChaos = 24;
-    public int GrassPlacementChaos {
-        get {
+    public int GrassPlacementChaos
+    {
+        get
+        {
             return _grassPlacementChaos;
         }
 
-        set {
+        set
+        {
             if (value >= 0 && value <= 48)
             {
                 _grassPlacementChaos = value;
             }
-            else if(value < 0)
+            else if (value < 0)
             {
                 _grassPlacementChaos = 0;
             }
