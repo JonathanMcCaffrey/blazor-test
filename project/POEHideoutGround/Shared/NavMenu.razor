@@ -1,54 +1,54 @@
 ﻿<div style="height:100vh;display:flex;flex-direction:column;">
-<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">POEHideoutGround</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+    <div class="top-row pl-4 navbar navbar-dark">
+        <a class="navbar-brand" href="">POEHideoutGround</a>
+        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-calculator" aria-hidden="true"></span> Calculator
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="information">
-                <span class="oi oi-book" aria-hidden="true"></span> Information
-            </NavLink>
-        </li>
+    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        <ul class="nav flex-column">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-calculator" aria-hidden="true"></span> Calculator
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="information">
+                    <span class="oi oi-book" aria-hidden="true"></span> Information
+                </NavLink>
+            </li>
 
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="road-map">
-                <span class="oi oi-globe" aria-hidden="true"></span> Road Map
-            </NavLink>
-        </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="road-map">
+                    <span class="oi oi-globe" aria-hidden="true"></span> Road Map
+                </NavLink>
+            </li>
 
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="privacy-policy">
-                <span class="oi oi-eye" aria-hidden="true"></span> Privacy Policy
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="about">
-                <span class="oi oi-info" aria-hidden="true"></span> About
-            </NavLink>
-        </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="privacy-policy">
+                    <span class="oi oi-eye" aria-hidden="true"></span> Privacy Policy
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="about">
+                    <span class="oi oi-info" aria-hidden="true"></span> About
+                </NavLink>
+            </li>
 
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="faq">
-                <span class="oi oi-comment-square" aria-hidden="true"></span> FAQ
-            </NavLink>
-        </li>
-    </ul>
-</div>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="faq">
+                    <span class="oi oi-comment-square" aria-hidden="true"></span> FAQ
+                </NavLink>
+            </li>
+        </ul>
+    </div>
 
-    <div style="flex:1"/>
+    <div style="flex:1" />
 
 
     <div style="display:flex;flex-direction:row;">
-        <div style="flex:1"/>
+        <div style="flex:1" />
         <NavLink class="nav-link" href="change-log" style="color:white">
             @versionNumber
         </NavLink>
