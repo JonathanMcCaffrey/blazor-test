@@ -67,7 +67,7 @@ Focusing on Slave Pens Bed, we can see the data is broken up into 7 parts. The n
 Most of those items are self explanatory. 
 
 - **Name:** the name doesn't really matter, it's only so we the players can easily read what the decor is, and asset name doesn't appear consistent on all exports. But they are always readable :)
-- **Hash:** acts as the id for the item. You can view it as the *real* name. Not easy for us to read, but always that same. 
+- **Hash:** acts as the id for the item. You can view it as the *real* name. Not easy for us to read, but it's always the same. 
 - **X and Y:** position data, with the caveat that the Celestial Nebula Hideout hideout doesn't start at the 0,0 coordinate. The initial point is closer to 153,153, and the final position is closer to 559,559
 - **Rotation:** rotation is simple enough, with the caveat that a 90-degree rotation is reprented with the value of 16385.
 - **Flip:** if it is mirrored. 1 for yes, 0 for no.
