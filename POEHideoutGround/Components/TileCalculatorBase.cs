@@ -10,15 +10,18 @@ namespace POEHideoutGround.Components
 {
     public class TileCalculatorBase : ComponentBase
     {
+        int SelectedKey = 0;
+
+        [Parameter]
+        public TileData DefaultTileData { get; set; }
+
+        [Parameter]
+        public TileData[] TileDataList { get; set; }
 
 
         [Parameter]
         public bool IsDisabled { get; set; }
 
-        [Parameter]
-        public Class1 Test;
-
-        
         [Parameter]
         public bool DefaultTile { get; set; }
     }
