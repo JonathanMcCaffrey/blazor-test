@@ -1,27 +1,35 @@
 ﻿@inherits TileCalculatorBase
 
-<div class="form-group">
-    <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="ground" checked @onchange="eventArgs => { Toggle(eventArgs.Value); }" />
-        <label class="custom-control-label" for="ground">Enable ground tiles.</label>
-    </div>
+@if (TileData == null)
+{
+    <p>Loading...</p>
 
-    <div class="form-group row">
-        <label for="ground">Ground Choice</label>
-        <select disabled="@IsDisabled" class="form-control" @bind="@SelectedKey">
+}
+else
+{
+    <div class="form-group">
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="ground" checked @onchange="eventArgs => { Toggle(eventArgs.Value); }" />
+            <label class="custom-control-label" for="ground">Enable ground tiles.</label>
+        </div>
 
-            @foreach (var tile in TileData)
-            {
-                if (DefaultTileData.Hash == tile.Hash && DefaultTileData.Var == tile.Var)
+        <div class="form-group row">
+            <label for="ground">Ground Choice</label>
+            <select disabled="@IsDisabled" class="form-control" @bind="@SelectedKey">
+
+                @foreach (var tile in TileData)
                 {
-                    <option value="@tile.Key" selected>@tile.Name @tile.DisplayVar - Default</option>
+                    if (DefaultTileData.Hash == tile.Hash && DefaultTileData.Var == tile.Var)
+                    {
+                        <option value="@tile.Key" selected>@tile.Name @tile.DisplayVar - Default</option>
+                    }
+                    else
+                    {
+                        <option value="@tile.Key">@tile.Name @tile.DisplayVar</option>
+                    }
                 }
-                else
-                {
-                    <option value="@tile.Key">@tile.Name @tile.DisplayVar</option>
-                }
-            }
-        </select>
+            </select>
 
+        </div>
     </div>
-</div>
+}
