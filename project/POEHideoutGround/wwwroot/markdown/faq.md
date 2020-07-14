@@ -10,5 +10,5 @@ Plus the Celestial Nebula Hideout is a pretty unique case, given it doesn't cont
 
 If the tool did incorporate more hideouts, it would probably be due to a new feature added to the tool, that fit those hideouts.
 
-**How do edit the hideout file?** <br/>
+**How do I edit the hideout file?** <br/>
 Check the <a href="/Information">Information</a> section. Hopefully the content there helps explain the steps and concepts.
