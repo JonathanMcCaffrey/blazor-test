@@ -22,8 +22,8 @@ Cool.
 **So if data collection is added, how would that be done?** <br/>
 This website would use a third-party analytics provider, probably Google Analytics. Data from events on the website would go to GA, and the data would appear on GA's dashboard. Data like what calculator settings are being used, what pages are being visited, and other data GA collects by default, like country of origin.
 
-**I am still not sure I am happy with that. Aren't cookies and data collection terrible for privacy?** <br/>
-Anything can be used poorly. I'll add an option to opt-in to that if we get there. Probably via a cookie, that will save if the current browser state is opt-in to data collection and/or cookies. That means having to opt-in whenever the state is lost, which kind of defeats the purpose of analytics? A popup or banner could be annoying to request the opt-in, so a toggle option would probably be added to this page.
+**I am not sure I am happy with that. Aren't cookies and data collection terrible for privacy?** <br/>
+Anything can be used poorly. I'll add an option to opt-in to that if we get there. Probably via a cookie, that will save if the current browser state is opt-in to data collection and/or cookies. That means having to opt-in whenever the state is lost. Which kind of defeats the purpose of analytics? A popup or banner could be annoying to request the opt-in, so a toggle option would probably be added to this page. *So to restate, this toggle would have amnesia and would eventually forget the opt-in, automatically opting you out.* Actually... rechecking this page to look at a toggle sounds tedious, so perhaps this privacy toggle will also appear somewhere non intrusively on the UI for people that do want to opt-in.
 
-**Oh, so like those optional "sharing data" checkboxes *that start as unchecked.* I am happy with that.** <br/>
+**Okay, so like those optional "sharing data" checkboxes *that start as unchecked.* I am happy with that.** <br/>
 Glad to hear.
