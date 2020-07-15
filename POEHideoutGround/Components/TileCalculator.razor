@@ -41,7 +41,10 @@
 
 
             <div>
-                @ChildContent
+                @if (!IsDisabled)
+                {
+                    @ChildContent
+                }
             </div>
         </div>
 
