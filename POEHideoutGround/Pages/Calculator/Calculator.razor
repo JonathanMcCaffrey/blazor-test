@@ -1,0 +1,98 @@
+﻿@page "/calculator"
+@inject HttpClient Http
+@inherits POEHideoutGround.Pages.Calculator.CalculatorBase
+
+<div class="alert alert-primary" role="alert">
+    Tool for editing hideout ground. <b>This is not a comprehensive hideout design tool,</b> but more of a branching off point to get you started!
+    <br /><br />
+    If your not sure how the calculator works, check the <a href="/Information"><b>Information</b></a> section.
+</div>
+
+<div class="alert alert-warning" role="alert">
+    This tool expects the usage of the <a href="https://pathofexile.gamepedia.com/Celestial_Nebula_Hideout"><b>Celestial Nebula Hideout</b></a>. Other hideouts do not appear flat enough to work with this tool, and attempting to modify those hideouts with this tool will result in visual artifacts.
+</div>
+
+<div style="display:grid;width:100%;grid-gap:5px;grid-template-columns:70% 30%">
+    <div style="        outline-width: thick;
+        outline-style: solid;
+        outline-color: gray;
+        height: 800px;
+        overflow-y: scroll">
+        <div style="display:grid;width:100%;grid-gap:0px;">
+            <TileCalculator TileTypeName="Ground" TileData=@groundData DefaultTileData=@DefaultGroundTile />
+            <TileCalculator TileTypeName="Water" TileData=@waterData DefaultTileData=@DefaultWaterTile />
+            <TileCalculator TileTypeName="Grass Patches" TileData=@grassPatchesData DefaultTileData=@DefaultGrassPatchesTile>
+                <br /><br />
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Placement Chaos</label>
+                    <div class="col-10">
+                        <input disabled="@grassPatchesDisabled" class="form-control" type="number" @bind="GrassPlacementChaos">
+                    </div>
+                    <small id="chaosHelp" class="form-text text-muted">Randomness of the placement, for more organically placed grass.</small>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Extra Spacing</label>
+                    <div class="col-10">
+                        <input disabled="@grassPatchesDisabled" class="form-control" type="number" @bind="GrassExtraSpacing">
+                    </div>
+                    <small id="spacingHelp" class="form-text text-muted">Extra spacing between grass, to spread out grass patches.</small>
+                </div>
+            </TileCalculator>
+        </div>
+    </div>
+
+    <div style="height: 800px;
+        outline-width: thick;
+        outline-style: solid;
+        outline-color: gray;
+">
+        <div style="display: grid;width: 100%;height: 100%;grid-template-rows: 70% 30%">
+            <div style="outline-width: thick;
+        outline-style: solid;
+        outline-color: gray;
+        padding: 30px;
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        background-color: white;">
+                <pre>@layoutData</pre>
+            </div>
+
+            <div style="outline-width: thick;
+        outline-style: solid;
+        outline-color: gray;
+        padding: 6px;
+        width: 100%;
+        background-color:white;">
+                <div style="display:grid;grid-gap:6px;grid-template-columns:auto auto auto;width:100%;">
+                    <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Generate">Generate</button>
+                    <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Clear">Clear</button>
+                    <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Copy">Copy</button>
+                </div>
+
+                @if (currentCount > 0)
+                {
+                    <p><br />@currentCount tiles generated.</p>
+                }
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<br/><br />
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        //TODO: This loading seems too slow. Look into why, and speed this up
+        //TODO: I can't seem to deserialize JSON in the base class. Look into why, and move this
+        groundData = await Http.GetFromJsonAsync<TileData[]>("data/ground.json");
+        waterData = await Http.GetFromJsonAsync<TileData[]>("data/water.json");
+        grassPatchesData = await Http.GetFromJsonAsync<TileData[]>("data/grassPatches.json");
+    }
+}
