@@ -1,6 +1,6 @@
 ﻿## On the Agenda
 
-- Improve the calculator layout.
+- Improve the calculator layout for mobile.
 - Improve page text layout and mobile scaling
 - Update the website colour scheme.
 - Add dark mode.
