@@ -32,11 +32,16 @@ namespace POEHideoutGround.Components
         [Parameter]
         public TileData[] TileData { get; set; }
 
-        private bool _isDisbled;
+
         [Parameter]
-        public bool IsDisabled { get { return _isDisbled;  } 
-            set { 
-                _isDisbled = value;
+        public bool CheckedByDefault { get; set; } = false;
+
+
+        private bool _isDisabled;
+        [Parameter]
+        public bool IsDisabled { get { return _isDisabled;  } 
+            set {
+                _isDisabled = value;
                 OnSelectedTileChanged();
             } }
 
@@ -53,14 +58,25 @@ namespace POEHideoutGround.Components
         {
             base.OnInitialized();
 
+
+            IsDisabled = !CheckedByDefault;
             SelectedKey = DefaultTileData.Key;
+
+            OnSelectedTileChanged();
+
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
+                SelectedKey = DefaultTileData.Key;
+
+                IsDisabled = !CheckedByDefault;
+
                 OnSelectedTileChanged();
+
+
             }
         }
 
@@ -73,12 +89,18 @@ namespace POEHideoutGround.Components
             return SelectedTileChanged.InvokeAsync(SelectedTile);
         }
 
+        public void Refresh()
+        {
+            SelectedKey = DefaultTileData.Key;
+            OnSelectedTileChanged();
+        }
+
         [Parameter]
         public TileData SelectedTile
         {
             get
             {
-                if (IsDisabled)
+                if (IsDisabled || TileData == null)
                 {
                     return null;
                 }

@@ -9,7 +9,6 @@
     If your not sure how the calculator works, check the <a href="/Information"><b>Information</b></a> section.
 </div>
 
-
 <div style="display:grid;width:100%;grid-gap:5px;grid-template-columns:70% 30%">
     <div style="        outline-width: thick;
         outline-style: solid;
@@ -17,7 +16,7 @@
         height: 800px;
         overflow-y: scroll">
         <div style="display:grid;width:100%;grid-gap:0px;">
-            <TileCalculator TileTypeName="Ground" @bind-SelectedTile="SelectedGroundTile" TileData=@groundData DefaultTileData=@DefaultGroundTile />
+            <TileCalculator TileTypeName="Ground" @ref="GroundComponent" CheckedByDefault=true @bind-SelectedTile="SelectedGroundTile" TileData=@groundData DefaultTileData=@DefaultGroundTile />
             <TileCalculator TileTypeName="Water" @bind-SelectedTile="SelectedWaterTile" TileData=@waterData DefaultTileData=@DefaultWaterTile />
             <TileCalculator TileTypeName="Grass Patches" @bind-SelectedTile="SelectedGrassPatchesTile" TileData=@grassPatchesData DefaultTileData=@DefaultGrassPatchesTile>
                 <br /><br />
@@ -94,6 +93,8 @@
 
 @code {
 
+    protected TileCalculator GroundComponent;
+
     protected override async Task OnInitializedAsync()
     {
         //TODO: This loading seems too slow. Look into why, and speed this up
@@ -101,6 +102,10 @@
         groundData = await Http.GetFromJsonAsync<TileData[]>("data/ground.json");
         waterData = await Http.GetFromJsonAsync<TileData[]>("data/water.json");
         grassPatchesData = await Http.GetFromJsonAsync<TileData[]>("data/grassPatches.json");
+
+        GroundComponent.Refresh();
+
+
     }
 
 

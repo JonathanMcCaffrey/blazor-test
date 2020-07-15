@@ -65,8 +65,6 @@ namespace POEHideoutGround.Pages.Calculator
 
         #endregion
 
-
-
         public void Generate()
         {
             ClearLayoutData();

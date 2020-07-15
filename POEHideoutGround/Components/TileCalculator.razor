@@ -1,5 +1,6 @@
 ﻿@inherits TileCalculatorBase
 
+
 <div style="outline-width: thick;
         outline-style: solid;
         outline-color: gray;
@@ -12,14 +13,14 @@
 
             <div style="display:grid;grid-gap:24px;">
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="@TileTypeName" checked @onchange="eventArgs => { Toggle(eventArgs.Value); }" />
+                    <input type="checkbox" class="custom-control-input" id="@TileTypeName" checked="@CheckedByDefault" @onchange="eventArgs => { Toggle(eventArgs.Value); }" />
                     <label class="custom-control-label" for="@TileTypeName">Enable @TileTypeName tiles.</label>
                 </div>
 
 
                 <div style="background-color:white">
                     <label for="@TileTypeName">@TileTypeName Choice</label>
-                    <select disabled="@IsDisabled" class="form-control" @bind="@SelectedKey" >
+                    <select disabled="@IsDisabled" class="form-control" @bind="@SelectedKey">
 
                         @if (TileData != null)
                         {
