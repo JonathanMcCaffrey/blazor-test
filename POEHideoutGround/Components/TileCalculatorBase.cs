@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using POEHideoutGround.Data;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace POEHideoutGround.Components
 {
@@ -9,13 +10,21 @@ namespace POEHideoutGround.Components
     /// </summary>
     public class TileCalculatorBase : ComponentBase
     {
+       
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
         [Parameter]
         public string TileTypeName { get; set; }
 
-        public string SelectedKey { get; set; }
+
+        private string _selectedKey;
+        public string SelectedKey { get { return _selectedKey; } 
+            set {
+                _selectedKey = value;
+                OnSelectedTileChanged();
+            }
+        }
 
         [Parameter]
         public TileData DefaultTileData { get; set; }
@@ -23,8 +32,12 @@ namespace POEHideoutGround.Components
         [Parameter]
         public TileData[] TileData { get; set; }
 
-
-        public bool IsDisabled { get; set; }
+        private bool _isDisbled;
+        public bool IsDisabled { get { return _isDisbled;  } 
+            set { 
+                _isDisbled = value;
+                OnSelectedTileChanged();
+            } }
 
         [Parameter]
         public bool DefaultTile { get; set; }
@@ -40,6 +53,23 @@ namespace POEHideoutGround.Components
             base.OnInitialized();
 
             SelectedKey = DefaultTileData.Key;
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                OnSelectedTileChanged();
+            }
+        }
+
+
+        [Parameter]
+        public EventCallback<TileData> SelectedTileChanged { get; set; }
+
+        public Task OnSelectedTileChanged()
+        {
+            return SelectedTileChanged.InvokeAsync(SelectedTile);
         }
 
         [Parameter]
@@ -65,6 +95,7 @@ namespace POEHideoutGround.Components
 
             set { }
         }
+
 
         public string SelectedImage
         {

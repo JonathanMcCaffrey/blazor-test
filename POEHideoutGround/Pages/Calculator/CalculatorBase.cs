@@ -66,27 +66,8 @@ namespace POEHideoutGround.Pages.Calculator
         public TileData[] waterData;
         public TileData[] grassPatchesData;
 
-
-        public TileData SelectedGroundTile
-        {
-            get
-            {
-                if (groundDisabled)
-                {
-                    return null;
-                }
-
-                foreach (var tile in groundData)
-                {
-                    if (tile.Key == SelectedGroundKey)
-                    {
-                        return tile;
-                    }
-                }
-
-                return null;
-            }
-        }
+        [Parameter]
+        public TileData SelectedGroundTile { get; set; }
 
         public TileData SelectedWaterTile
         {
@@ -176,7 +157,6 @@ namespace POEHideoutGround.Pages.Calculator
         {
             if (SelectedGroundTile == null) { return; }
 
-            int debugLimit = 0;
             for (int x = minX + xOffset; x <= maxX; x += largeTileDimensions)
             {
                 for (int y = minY - yOffset; y >= maxY; y -= largeTileDimensions)
@@ -185,10 +165,6 @@ namespace POEHideoutGround.Pages.Calculator
 
 
                     currentCount++;
-                    if (debugLimit++ > 10)
-                    {
-                        //    return;
-                    }
                 }
             }
         }
@@ -268,9 +244,7 @@ namespace POEHideoutGround.Pages.Calculator
 
             var random = new Random();
 
-            int debugLimit = 0;
-
-            int extraOffset = extraOffset = GrassExtraSpacing / 2;
+            int extraOffset = GrassExtraSpacing / 2;
 
 
             for (int x = minX + xOffset + extraOffset; x <= maxX; x += grassPatchDimensions + GrassExtraSpacing)
@@ -289,12 +263,6 @@ namespace POEHideoutGround.Pages.Calculator
                     layoutData += $"{SelectedGrassPatchesTile.Name} = {{ Hash={SelectedGrassPatchesTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedGrassPatchesTile.Var} }}\n";
 
                     currentCount++;
-
-                    if (debugLimit++ > 10)
-                    {
-                        //    return;
-                    }
-
 
                 }
             }
