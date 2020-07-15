@@ -4,18 +4,20 @@ using System.Collections.Generic;
 
 namespace POEHideoutGround.Components
 {
+    /// <summary>
+    /// Test summary
+    /// </summary>
     public class TileCalculatorBase : ComponentBase
     {
-        public int SelectedKey = 0;
+        public string SelectedKey { get; set; }
 
         [Parameter]
         public TileData DefaultTileData { get; set; }
 
         [Parameter]
-        public IEnumerable<TileData> TileData { get; set; }
+        public TileData[] TileData { get; set; }
 
 
-        [Parameter]
         public bool IsDisabled { get; set; }
 
         [Parameter]
@@ -23,7 +25,16 @@ namespace POEHideoutGround.Components
 
         public void Toggle(object checkedValue)
         {
+            IsDisabled = !(bool)checkedValue;
+        }
 
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            SelectedKey = DefaultTileData.Key;
         }
     }
 }
+

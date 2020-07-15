@@ -1,7 +1,27 @@
 ﻿@page "/experimental"
 @inject HttpClient Http
-
 Hidden page for testing new features.
 
 
-<POEHideoutGround.Components.TileCalculator/>
+@if (groundData == null)
+{
+    <p>Hi</p>
+}
+else
+{
+    <POEHideoutGround.Components.TileCalculator TileData=@groundData DefaultTileData=@DefaultGroundTile />
+}
+
+@code {
+
+   static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var: "2", hash: "1798490749");
+
+   public  TileData[] groundData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //TODO: This loading seems too slow. Look into why, and speed this up
+        groundData = await Http.GetFromJsonAsync<TileData[]>("data/ground.json");
+    }
+
+}

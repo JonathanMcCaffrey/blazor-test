@@ -21,9 +21,9 @@ namespace POEHideoutGround.Data
         /// <summary>
         /// Unique variant/hash key used by the calculator.
         /// </summary>
-        public int Key
+      public string Key
         {
-            get { return int.Parse(Hash) * 100 + int.Parse(Var); }
+            get { return Hash + "_" + Var; }
         }
 
 
