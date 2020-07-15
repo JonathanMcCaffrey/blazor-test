@@ -4,13 +4,9 @@
 @inherits POEHideoutGround.Pages.Calculator.CalculatorBase
 
 <div class="alert alert-primary" role="alert">
-    Tool for editing hideout ground. <b>This is not a comprehensive hideout design tool,</b> but more of a branching off point to get you started!
+    This calculator is for editing the <a href="https://pathofexile.gamepedia.com/Celestial_Nebula_Hideout"><b>Celestial Nebula Hideout</b></a> ground. <b>This is not a comprehensive hideout design tool,</b> but more of a branching off point to get you started!
     <br /><br />
     If your not sure how the calculator works, check the <a href="/Information"><b>Information</b></a> section.
-</div>
-
-<div class="alert alert-warning" role="alert">
-    This tool expects the usage of the <a href="https://pathofexile.gamepedia.com/Celestial_Nebula_Hideout"><b>Celestial Nebula Hideout</b></a>. Other hideouts do not appear flat enough to work with this tool, and attempting to modify those hideouts with this tool will result in visual artifacts.
 </div>
 
 
@@ -82,6 +78,10 @@
                     <p><br />@currentCount tiles generated.</p>
                 }
 
+                @if (currentCount > 0)
+                {
+                    <p><br />Copy this data and paste it into your hideout file. <i>Don't know how?</i> Check the Information page.</p>
+                }
 
             </div>
         </div>
