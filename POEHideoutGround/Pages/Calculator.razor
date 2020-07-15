@@ -19,9 +19,28 @@
         height: 800px;
         overflow-y: scroll">
         <div style="display:grid;width:100%;grid-gap:0px;">
-            <POEHideoutGround.Components.TileCalculator TileTypeName="Ground" TileData=@groundData DefaultTileData=@DefaultGroundTile />
+            <POEHideoutGround.Components.TileCalculator TileTypeName="Ground" TileData=@groundData DefaultTileData=@DefaultGroundTile >
+                <p>Yolo Swag</p>
+                </POEHideoutGround.Components.TileCalculator>
             <POEHideoutGround.Components.TileCalculator TileTypeName="Water" TileData=@waterData DefaultTileData=@DefaultWaterTile />
-            <POEHideoutGround.Components.TileCalculator TileTypeName="Grass Patches" TileData=@grassPatchesData DefaultTileData=@DefaultGrassPatchesTile />
+            <POEHideoutGround.Components.TileCalculator TileTypeName="Grass Patches" TileData=@grassPatchesData DefaultTileData=@DefaultGrassPatchesTile>
+                <br/><br />
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Placement Chaos</label>
+                    <div class="col-10">
+                        <input disabled="@grassPatchesDisabled" class="form-control" type="number" @bind="GrassPlacementChaos">
+                    </div>
+                    <small id="chaosHelp" class="form-text text-muted">Randomness of the placement, for more organically placed grass.</small>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Extra Spacing</label>
+                    <div class="col-10">
+                        <input disabled="@grassPatchesDisabled" class="form-control" type="number" @bind="GrassExtraSpacing">
+                    </div>
+                    <small id="spacingHelp" class="form-text text-muted">Extra spacing between grass, to spread out grass patches.</small>
+                </div>
+            </POEHideoutGround.Components.TileCalculator>
         </div>
     </div>
 
@@ -31,19 +50,34 @@
         outline-color: gray;
 ">
         <div style="display: grid;width: 100%;height: 100%;grid-template-rows: 70% 30%">
-            <div style="padding: 30px;
+            <div style="outline-width: thick;
+        outline-style: solid;
+        outline-color: gray;
+        padding: 30px;
         width: 100%;
         overflow-y: scroll;
+        overflow-x: hidden;
         background-color: white;">
-
+                <pre>@layoutData</pre>
             </div>
 
             <div style="outline-width: thick;
         outline-style: solid;
         outline-color: gray;
-        padding: 30px;
-        width: 100%; 
+        padding: 6px;
+        width: 100%;
         background-color:white;">
+                <div style="display:grid;grid-gap:6px;grid-template-columns:auto auto auto;width:100%;">
+                    <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Generate">Generate</button>
+                    <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Clear">Clear</button>
+                    <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Copy">Copy</button>
+                </div>
+
+                @if (currentCount > 0)
+                {
+                    <p><br />@currentCount tiles generated.</p>
+                }
+
 
             </div>
         </div>
@@ -310,6 +344,18 @@ else
 
         ErrorCatching();
     }
+
+
+    private void Clear()
+    {
+        ClearLayoutData();
+    }
+
+    private void Copy()
+    {
+        layoutData = "Copy to clipboard not implemented";
+    }
+
 
     private void ClearLayoutData()
     {

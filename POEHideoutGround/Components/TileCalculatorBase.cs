@@ -10,6 +10,9 @@ namespace POEHideoutGround.Components
     public class TileCalculatorBase : ComponentBase
     {
         [Parameter]
+        public RenderFragment ChildContent { get; set; }
+
+        [Parameter]
         public string TileTypeName { get; set; }
 
         public string SelectedKey { get; set; }
