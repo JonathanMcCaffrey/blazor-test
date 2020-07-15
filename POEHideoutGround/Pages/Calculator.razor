@@ -13,7 +13,11 @@
 
 
 <div style="display:grid;width:100%;grid-gap:5px;grid-template-columns:70% 30%">
-    <div style="border-width: thick; border-style: solid; border-color: gray; height: 800px; overflow: scroll">
+    <div style="        outline-width: thick;
+        outline-style: solid;
+        outline-color: gray;
+        height: 800px;
+        overflow-y: scroll">
         <div style="display:grid;width:100%;grid-gap:0px;">
             <POEHideoutGround.Components.TileCalculator TileTypeName="Ground" TileData=@groundData DefaultTileData=@DefaultGroundTile />
             <POEHideoutGround.Components.TileCalculator TileTypeName="Water" TileData=@waterData DefaultTileData=@DefaultWaterTile />
@@ -21,13 +25,25 @@
         </div>
     </div>
 
-    <div style="height:800px;">
+    <div style="height: 800px;
+        outline-width: thick;
+        outline-style: solid;
+        outline-color: gray;
+">
         <div style="display: grid;width: 100%;height: 100%;grid-template-rows: 70% 30%">
-            <div style="border-width: thick;border-style: solid;border-color: gray;padding: 30px;width: 100%;overflow: scroll;">
+            <div style="padding: 30px;
+        width: 100%;
+        overflow-y: scroll;
+        background-color: white;">
 
             </div>
 
-            <div style="border-width:thick;border-style:solid;border-color:gray;padding:30px;width:100%">
+            <div style="outline-width: thick;
+        outline-style: solid;
+        outline-color: gray;
+        padding: 30px;
+        width: 100%; 
+        background-color:white;">
 
             </div>
         </div>

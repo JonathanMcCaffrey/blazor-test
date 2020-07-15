@@ -1,18 +1,24 @@
 ﻿@inherits TileCalculatorBase
 
 
-<div style="border-width: thick; border-style: solid; border-color: gray; padding: 30px; width: 100%">
+<div style="outline-width: thick;
+        outline-style: solid;
+        outline-color: gray;
+        padding: 30px;
+        width: 100%;
+        background-color:white;
+    ">
     <div style="display:grid;grid-template-columns:auto auto;grid-gap:20px">
         <div class="form-group">
 
-            <div style="display:grid;grid-gap:24px">
+            <div style="display:grid;grid-gap:24px;">
                 <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="@TileTypeName" checked @onchange="eventArgs => { Toggle(eventArgs.Value); }" />
                     <label class="custom-control-label" for="@TileTypeName">Enable @TileTypeName tiles.</label>
                 </div>
 
 
-                <div>
+                <div style="background-color:white">
                     <label for="@TileTypeName">@TileTypeName Choice</label>
                     <select disabled="@IsDisabled" class="form-control" @bind="@SelectedKey">
 
