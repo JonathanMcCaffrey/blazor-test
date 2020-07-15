@@ -9,6 +9,9 @@ namespace POEHideoutGround.Components
     /// </summary>
     public class TileCalculatorBase : ComponentBase
     {
+        [Parameter]
+        public string TileTypeName { get; set; }
+
         public string SelectedKey { get; set; }
 
         [Parameter]
@@ -36,6 +39,7 @@ namespace POEHideoutGround.Components
             SelectedKey = DefaultTileData.Key;
         }
 
+        [Parameter]
         public TileData SelectedTile
         {
             get
@@ -55,6 +59,8 @@ namespace POEHideoutGround.Components
 
                 return null;
             }
+
+            set { }
         }
 
         public string SelectedImage

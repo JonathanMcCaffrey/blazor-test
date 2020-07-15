@@ -1,33 +1,37 @@
 ﻿@inherits TileCalculatorBase
 
 
-<div style="border-width:thick;border-style:solid;border-color:gray;padding:30px;width:100%">
+<div style="border-width: thick; border-style: solid; border-color: gray; padding: 30px; width: 100%">
     <div style="display:grid;grid-template-columns:auto auto;grid-gap:20px">
         <div class="form-group">
-            <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="ground" checked @onchange="eventArgs => { Toggle(eventArgs.Value); }" />
-                <label class="custom-control-label" for="ground">Enable ground tiles.</label>
-            </div>
 
-            <div class="form-group row">
-                <label for="ground">Ground Choice</label>
-                <select disabled="@IsDisabled" class="form-control" @bind="@SelectedKey">
+            <div style="display:grid;grid-gap:24px">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="@TileTypeName" checked @onchange="eventArgs => { Toggle(eventArgs.Value); }" />
+                    <label class="custom-control-label" for="@TileTypeName">Enable @TileTypeName tiles.</label>
+                </div>
 
-                    @if (TileData != null)
-                    {
-                        @foreach (var tile in TileData)
+
+                <div>
+                    <label for="@TileTypeName">@TileTypeName Choice</label>
+                    <select disabled="@IsDisabled" class="form-control" @bind="@SelectedKey">
+
+                        @if (TileData != null)
                         {
-                            if (DefaultTileData.Hash == tile.Hash && DefaultTileData.Var == tile.Var)
+                            @foreach (var tile in TileData)
                             {
-                                <option value="@tile.Key" selected>@tile.Name @tile.DisplayVar - Default</option>
-                            }
-                            else
-                            {
-                                <option value="@tile.Key">@tile.Name @tile.DisplayVar</option>
+                                if (DefaultTileData.Hash == tile.Hash && DefaultTileData.Var == tile.Var)
+                                {
+                                    <option value="@tile.Key" selected>@tile.Name @tile.DisplayVar - Default</option>
+                                }
+                                else
+                                {
+                                    <option value="@tile.Key">@tile.Name @tile.DisplayVar</option>
+                                }
                             }
                         }
-                    }
-                </select>
+                    </select>
+                </div>
             </div>
         </div>
 

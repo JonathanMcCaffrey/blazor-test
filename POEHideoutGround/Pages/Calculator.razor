@@ -12,6 +12,29 @@
 </div>
 
 
+<div style="display:grid;width:100%;grid-gap:5px;grid-template-columns:70% 30%">
+    <div style="border-width: thick; border-style: solid; border-color: gray; height: 800px; overflow: scroll">
+        <div style="display:grid;width:100%;grid-gap:0px;">
+            <POEHideoutGround.Components.TileCalculator TileTypeName="Ground" TileData=@groundData DefaultTileData=@DefaultGroundTile />
+            <POEHideoutGround.Components.TileCalculator TileTypeName="Water" TileData=@waterData DefaultTileData=@DefaultWaterTile />
+            <POEHideoutGround.Components.TileCalculator TileTypeName="Grass Patches" TileData=@grassPatchesData DefaultTileData=@DefaultGrassPatchesTile />
+        </div>
+    </div>
+
+    <div style="height:800px;">
+        <div style="display: grid;width: 100%;height: 100%;grid-template-rows: 70% 30%">
+            <div style="border-width: thick;border-style: solid;border-color: gray;padding: 30px;width: 100%;overflow: scroll;">
+
+            </div>
+
+            <div style="border-width:thick;border-style:solid;border-color:gray;padding:30px;width:100%">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
 @if (groundData == null || waterData == null || grassPatchesData == null)
 {
     <p><em>Loading...</em></p>
@@ -128,9 +151,10 @@ else
 
 @code {
 
-    static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var: "2", hash: "1798490749", key: 9);
-    static TileData DefaultWaterTile = new TileData(name: "Water Plane", var: "22", hash: "1179014731", key: 3);
-    static TileData DefaultGrassPatchesTile = new TileData(name: "Grass Patch", var: "4", hash: "3856837925", key: 1);
+    static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var: "2", hash: "1798490749", image: "dirt_3_l");
+    static TileData DefaultWaterTile = new TileData(name: "Water Plane", var: "22", hash: "1179014731", image: "water_23_l");
+    static TileData DefaultGrassPatchesTile = new TileData(name: "Grass Patch", var: "4", hash: "3856837925", image: "grasspatch_5_l");
+
 
 
     public bool groundDisabled { get; set; } = false;
@@ -151,9 +175,9 @@ else
         grassPatchesDisabled = !(bool)checkedValue;
     }
 
-    int SelectedGroundKey { get; set; } = DefaultGroundTile.Key;
-    int SelectedWaterKey { get; set; } = DefaultWaterTile.Key;
-    int SelectedGrassPatchesKey { get; set; } = DefaultGrassPatchesTile.Key;
+    string SelectedGroundKey { get; set; } = DefaultGroundTile.Key;
+    string SelectedWaterKey { get; set; } = DefaultWaterTile.Key;
+    string SelectedGrassPatchesKey { get; set; } = DefaultGrassPatchesTile.Key;
 
     #region varibles
     int minX = 153;
@@ -190,24 +214,6 @@ else
         grassPatchesData = await Http.GetFromJsonAsync<TileData[]>("data/grassPatches.json");
     }
 
-    public class TileData
-    {
-        public string Name { get; set; }
-        public string Var { get; set; }
-        public string Hash { get; set; }
-        public int Key { get; set; }
-
-        public string DisplayVar { get { return (int.Parse(Var) + 1).ToString(); } }
-
-        public TileData() { }
-        public TileData(string name, string var, string hash, int key)
-        {
-            Name = name;
-            Var = var;
-            Hash = hash;
-            Key = key;
-        }
-    }
 
 
     public TileData SelectedGroundTile
