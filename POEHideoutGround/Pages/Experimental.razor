@@ -9,7 +9,7 @@ Hidden page for testing new features.
 }
 else
 {
-<div style="display:grid;width:100%;grid-gap:5px;grid-template-columns:auto auto">
+<div style="display:grid;width:100%;grid-gap:5px;grid-template-columns:auto">
     <POEHideoutGround.Components.TileCalculator TileData=@groundData DefaultTileData=@DefaultGroundTile />
     <POEHideoutGround.Components.TileCalculator TileData=@groundData DefaultTileData=@DefaultGroundTile />
     <POEHideoutGround.Components.TileCalculator TileData=@groundData DefaultTileData=@DefaultGroundTile />
@@ -18,7 +18,7 @@ else
 
 @code {
 
-   static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var: "2", hash: "1798490749");
+   static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var: "2", hash: "1798490749", image: "dirt_3_l");
 
    public  TileData[] groundData;
 

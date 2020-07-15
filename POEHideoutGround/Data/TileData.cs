@@ -19,9 +19,14 @@ namespace POEHideoutGround.Data
         public string Hash { get; set; }
 
         /// <summary>
+        /// Screenshot image file of the asset to display. A more officialish datamined asset would be better.
+        /// </summary>
+        public string Image { get; set; }
+
+        /// <summary>
         /// Unique variant/hash key used by the calculator.
         /// </summary>
-      public string Key
+        public string Key
         {
             get { return Hash + "_" + Var; }
         }
@@ -57,11 +62,12 @@ namespace POEHideoutGround.Data
 
         public TileData() { }
 
-        public TileData(string name, string var, string hash)
+        public TileData(string name, string var, string hash, string image)
         {
             Name = name;
             Var = var;
             Hash = hash;
+            Image = image;
         }
     }
 }

@@ -35,6 +35,32 @@ namespace POEHideoutGround.Components
 
             SelectedKey = DefaultTileData.Key;
         }
+
+        public TileData SelectedTile
+        {
+            get
+            {
+                if (IsDisabled)
+                {
+                    return null;
+                }
+
+                foreach (var tile in TileData)
+                {
+                    if (tile.Key == SelectedKey)
+                    {
+                        return tile;
+                    }
+                }
+
+                return null;
+            }
+        }
+
+        public string SelectedImage
+        {
+            get { return "images/tile/" + SelectedTile.Image + ".png"; }
+        }
     }
 }
 

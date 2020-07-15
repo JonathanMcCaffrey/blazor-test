@@ -2,98 +2,104 @@
   {
     "name": "Arctic Ground",
     "hash": "2825914735",
-    "var": "1"
+    "var": "1",
+    "image": "arctic_2_l"
   },
   {
     "name": "Arctic Ground",
     "hash": "2825914735",
-    "var": "3"
+    "var": "3",
+    "image": "arctic_4_l"
   },
   {
     "name": "Arctic Ground",
     "hash": "2825914735",
-    "var": "4"
+    "var": "4",
+    "image": "arctic_5_l"
   },
   {
     "name": "Arctic Ground",
     "hash": "2825914735",
-    "var": "6"
+    "var": "6",
+    "image": "arctic_7_l"
   },
   {
     "name": "Arctic Ground",
     "hash": "2825914735",
-    "var": "9"
+    "var": "9",
+    "image": "arctic_10_l"
 
   },
   {
     "name": "Templar Courts Ground",
     "hash": "3738574959",
-    "var": "2"
-
+    "var": "2",
+    "image": "templarground_3_l"
   },
   {
     "name": "Lioneye's Watch Ground",
     "hash": "456645464",
-    "var": "2"
-
+    "var": "2",
+    "image": "lioneye_3_l"
   },
   {
     "name": "Lioneye's Watch Ground",
     "hash": "456645464",
-    "var": "5"
-
+    "var": "5",
+    "image": "lioneye_6_l"
   },
   {
     "name": "Dirt Ground",
     "hash": "1798490749",
-    "var": "2"
-
+    "var": "2",
+    "image": "dirt_3_l"
   },
   {
     "name": "Grass Ground",
     "hash": "1798490749",
-    "var": "5"
-
+    "var": "5",
+    "image": "grass_6_l"
   },
   {
     "name": "Grass Ground",
     "hash": "2825914735",
-    "var": "1"
-
+    "var": "1",
+    "image": "grass_2_l"
   },
   {
     "name": "Sand Ground",
     "hash": "1900098565",
-    "var": "2"
-
+    "var": "2",
+    "image": "sand_3_l"
   },
   {
     "name": "Sand Ground",
     "hash": "1900098565",
-    "var": "5"
-
+    "var": "5",
+    "image": "sand_6_l"
   },
   {
     "name": "Wood Ground",
     "hash": "2661512021",
-    "var": "2"
-
+    "var": "2",
+    "image": "wood_3_l"
   },
   {
     "name": "Wood Ground",
     "hash": "2661512021",
-    "var": "5"
-
+    "var": "5",
+    "image": "wood_6_l"
   },
   {
     "name": "Sewer Ground",
     "hash": "2521957828",
-    "var": "2"
-
+    "var": "2",
+    "image": "sewer_3_l"
   },
   {
     "name": "Tile Ground",
     "hash": "2382279785",
-    "var": "2"
+    "var": "2",
+    "image": "tile_3_l"
   }
 ]
