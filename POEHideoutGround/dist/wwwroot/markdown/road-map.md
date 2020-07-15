@@ -1,6 +1,6 @@
 ﻿## On the Agenda
 
-- Improve the calculator layout.
+- Improve the calculator layout for mobile.
 - Improve page text layout and mobile scaling
 - Update the website colour scheme.
 - Add dark mode.
@@ -16,9 +16,11 @@
 - Aria and better disability support.
 - Favour calculator.
 - Krangle grass patches option, for more randomly placed and varied grass.
+- Hideout quick item decor deletion. Remove all instances of a decor from your hideout file.
+- Manual asset placement painting with tile snapping to grid.
+- Offline mode. This website technically shouldn't need a internet connection, since it's a SPA.
 
 ## Maybe...
 
-- Hideout quick item decor deletion. Remove all instances of a decor from your hideout file.
 - Login/profile, and data and hideout saving.
 - Unit Tests.

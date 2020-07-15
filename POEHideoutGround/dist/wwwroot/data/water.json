@@ -3,18 +3,18 @@
     "name": "Water Plane",
     "hash": "1179014731",
     "var": "4",
-    "key": 1
+    "image": "water_5_l"
   },
   {
     "name": "Water Plane",
     "hash": "1179014731",
     "var": "13",
-    "key": 2
+    "image": "water_14_l"
   },
   {
     "name": "Water Plane",
     "hash": "1179014731",
     "var": "22",
-    "key": 3
+    "image": "water_23_l"
   }
 ]
