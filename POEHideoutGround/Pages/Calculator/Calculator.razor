@@ -46,19 +46,18 @@
         outline-color: gray;
 ">
         <div style="display: grid;width: 100%;height: 100%;grid-template-rows: 70% 30%">
-            <div style="outline-width: thick;
+            <div style="        outline-width: thick;
         outline-style: solid;
         outline-color: gray;
         width: 100%;
-        overflow-y: scroll;
+        overflow-y: hidden;
         overflow-x: hidden;
         background-color: white;">
-                <pre style="margin: 0px;
+                <pre style="        margin: 0px;
         width: 100%;
         height: 100%;
-        resize: none;">
-@LayoutData
-</pre>
+        overflow-y: scroll;
+        overflow-x: hidden;">@LayoutData</pre>
             </div>
 
             <div style="outline-width: thick;
@@ -70,7 +69,7 @@
                 <div style="display:grid;grid-gap:6px;grid-template-columns:auto auto auto;width:100%;">
                     <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Generate">Generate</button>
                     <button style="width:100%;height:100%" disabled="@HasNoTiles" class="btn btn-primary" @onclick="Clear">Clear</button>
-                    <button style="width:100%;height:100%"  disabled="@HasNoTiles" class="btn btn-primary" @onclick="CopyTextToClipboard">Copy</button>
+                    <button style="width:100%;height:100%" disabled="@HasNoTiles" class="btn btn-primary" @onclick="CopyTextToClipboard">Copy</button>
                 </div>
 
                 @if (CurrentCount > 0)
