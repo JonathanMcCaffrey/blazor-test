@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -9,6 +9,20 @@
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
 </head>
+
+
+<script>
+    window.clipboardCopy = {
+        copyText: function (text) {
+            navigator.clipboard.writeText(text).then(function () {
+                alert("Copied layout data.");
+            })
+                .catch(function (error) {
+                    alert(error);
+                });
+        }
+    };
+</script>
 
 <body>
     <app>Loading...</app>

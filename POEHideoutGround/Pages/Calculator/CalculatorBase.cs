@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using POEHideoutGround.Data;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace POEHideoutGround.Pages.Calculator
 {
@@ -52,7 +54,8 @@ namespace POEHideoutGround.Pages.Calculator
 
         public int currentCount = 0;
 
-        public string layoutData = "";
+        public string LayoutData { get; set; }
+
 
         string defaultRotation = "0";
         // Rotation Data
@@ -133,23 +136,18 @@ namespace POEHideoutGround.Pages.Calculator
             ClearLayoutData();
         }
 
-        public void Copy()
-        {
-            layoutData = "Copy to clipboard not implemented";
-        }
-
 
         public void ClearLayoutData()
         {
             currentCount = 0;
-            layoutData = "";
+            LayoutData = "";
         }
 
         public void ErrorCatching()
         {
-            if (layoutData == "")
+            if (LayoutData == "")
             {
-                layoutData = "No layout could be generated. Please ensure you have selected a tile, and you have it's generation enabled.";
+                LayoutData = "No layout could be generated. Please ensure you have selected a tile, and you have it's generation enabled.";
             }
         }
 
@@ -161,7 +159,7 @@ namespace POEHideoutGround.Pages.Calculator
             {
                 for (int y = minY - yOffset; y >= maxY; y -= largeTileDimensions)
                 {
-                    layoutData += $"{SelectedGroundTile.Name} = {{ Hash={SelectedGroundTile.Hash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={SelectedGroundTile.Var} }}\n";
+                    LayoutData += $"{SelectedGroundTile.Name} = {{ Hash={SelectedGroundTile.Hash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={SelectedGroundTile.Var} }}\n";
 
 
                     currentCount++;
@@ -179,7 +177,7 @@ namespace POEHideoutGround.Pages.Calculator
             {
                 for (int y = minY - yOffset; y >= maxY; y -= largeTileDimensions)
                 {
-                    layoutData += $"{SelectedWaterTile.Name} = {{ Hash={SelectedWaterTile.Hash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={SelectedWaterTile.Var} }}\n";
+                    LayoutData += $"{SelectedWaterTile.Name} = {{ Hash={SelectedWaterTile.Hash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={SelectedWaterTile.Var} }}\n";
 
                     currentCount++;
                 }
@@ -260,7 +258,7 @@ namespace POEHideoutGround.Pages.Calculator
                     newX = newX < minX ? newX = minX : newX > maxX ? maxX : newX;
                     newY = newY > minY ? newY = minY : newY < maxY ? maxY : newY;
 
-                    layoutData += $"{SelectedGrassPatchesTile.Name} = {{ Hash={SelectedGrassPatchesTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedGrassPatchesTile.Var} }}\n";
+                    LayoutData += $"{SelectedGrassPatchesTile.Name} = {{ Hash={SelectedGrassPatchesTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedGrassPatchesTile.Var} }}\n";
 
                     currentCount++;
 

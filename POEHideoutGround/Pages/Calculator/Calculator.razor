@@ -1,5 +1,6 @@
 ﻿@page "/calculator"
 @inject HttpClient Http
+@inject IJSRuntime JSRuntime
 @inherits POEHideoutGround.Pages.Calculator.CalculatorBase
 
 <div class="alert alert-primary" role="alert">
@@ -52,12 +53,16 @@
             <div style="outline-width: thick;
         outline-style: solid;
         outline-color: gray;
-        padding: 30px;
         width: 100%;
         overflow-y: scroll;
         overflow-x: hidden;
         background-color: white;">
-                <pre>@layoutData</pre>
+                <pre style="margin: 0px;
+        width: 100%;
+        height: 100%;
+        resize: none;">
+@LayoutData
+</pre>
             </div>
 
             <div style="outline-width: thick;
@@ -69,7 +74,7 @@
                 <div style="display:grid;grid-gap:6px;grid-template-columns:auto auto auto;width:100%;">
                     <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Generate">Generate</button>
                     <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Clear">Clear</button>
-                    <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Copy">Copy</button>
+                    <button style="width:100%;height:100%" class="btn btn-primary" @onclick="CopyTextToClipboard">Copy</button>
                 </div>
 
                 @if (currentCount > 0)
@@ -84,7 +89,9 @@
     </div>
 </div>
 
-<br/><br />
+<br />
+<br />
+
 
 @code {
 
@@ -95,5 +102,11 @@
         groundData = await Http.GetFromJsonAsync<TileData[]>("data/ground.json");
         waterData = await Http.GetFromJsonAsync<TileData[]>("data/water.json");
         grassPatchesData = await Http.GetFromJsonAsync<TileData[]>("data/grassPatches.json");
+    }
+
+
+    private async Task CopyTextToClipboard()
+    {
+        await JSRuntime.InvokeVoidAsync("clipboardCopy.copyText", LayoutData);
     }
 }
