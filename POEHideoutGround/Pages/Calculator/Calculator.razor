@@ -18,8 +18,8 @@
         overflow-y: scroll">
         <div style="display:grid;width:100%;grid-gap:0px;">
             <TileCalculator TileTypeName="Ground" @bind-SelectedTile="SelectedGroundTile" TileData=@groundData DefaultTileData=@DefaultGroundTile />
-            <TileCalculator TileTypeName="Water" TileData=@waterData DefaultTileData=@DefaultWaterTile />
-            <TileCalculator TileTypeName="Grass Patches" TileData=@grassPatchesData DefaultTileData=@DefaultGrassPatchesTile>
+            <TileCalculator TileTypeName="Water" @bind-SelectedTile="SelectedWaterTile" TileData=@waterData DefaultTileData=@DefaultWaterTile />
+            <TileCalculator TileTypeName="Grass Patches" @bind-SelectedTile="SelectedGrassPatchesTile" TileData=@grassPatchesData DefaultTileData=@DefaultGrassPatchesTile>
                 <br /><br />
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Placement Chaos</label>
@@ -69,18 +69,18 @@
         background-color:white;">
                 <div style="display:grid;grid-gap:6px;grid-template-columns:auto auto auto;width:100%;">
                     <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Generate">Generate</button>
-                    <button style="width:100%;height:100%" class="btn btn-primary" @onclick="Clear">Clear</button>
-                    <button style="width:100%;height:100%" class="btn btn-primary" @onclick="CopyTextToClipboard">Copy</button>
+                    <button style="width:100%;height:100%" disabled="@HasNoTiles" class="btn btn-primary" @onclick="Clear">Clear</button>
+                    <button style="width:100%;height:100%"  disabled="@HasNoTiles" class="btn btn-primary" @onclick="CopyTextToClipboard">Copy</button>
                 </div>
 
-                @if (currentCount > 0)
+                @if (CurrentCount > 0)
                 {
-                    <p><br />@currentCount tiles generated.</p>
+                    <p><br />@CurrentCount tiles generated.</p>
                 }
 
-                @if (currentCount > 0)
+                @if (CurrentCount > 0)
                 {
-                    <p><br />Copy this data and paste it into your hideout file. <i>Don't know how?</i> Check the Information page.</p>
+                    <p><br />Copy this data and paste it into your hideout file. <i>Don't know how?</i> Check the <a href="/Information"><b>Information</b></a> section.</p>
                 }
 
             </div>

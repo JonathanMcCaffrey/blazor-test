@@ -33,6 +33,7 @@ namespace POEHideoutGround.Components
         public TileData[] TileData { get; set; }
 
         private bool _isDisbled;
+        [Parameter]
         public bool IsDisabled { get { return _isDisbled;  } 
             set { 
                 _isDisbled = value;

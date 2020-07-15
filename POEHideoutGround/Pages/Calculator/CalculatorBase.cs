@@ -19,23 +19,9 @@ namespace POEHideoutGround.Pages.Calculator
 
 
         public bool groundDisabled { get; set; } = false;
-        void GroundToggle(object checkedValue)
-        {
-            groundDisabled = !(bool)checkedValue;
-        }
-
         public bool waterDisabled { get; set; } = true;
-        void WaterToggle(object checkedValue)
-        {
-            waterDisabled = !(bool)checkedValue;
-        }
-
         public bool grassPatchesDisabled { get; set; } = true;
-        void GrassPatchesToggle(object checkedValue)
-        {
-            grassPatchesDisabled = !(bool)checkedValue;
-        }
-
+        
         string SelectedGroundKey { get; set; } = DefaultGroundTile.Key;
         string SelectedWaterKey { get; set; } = DefaultWaterTile.Key;
         string SelectedGrassPatchesKey { get; set; } = DefaultGrassPatchesTile.Key;
@@ -52,7 +38,10 @@ namespace POEHideoutGround.Pages.Calculator
         int largeTileDimensions = 69;
         int grassPatchDimensions = 30;
 
-        public int currentCount = 0;
+        public int CurrentCount { get; set; }
+
+        public bool HasNoTiles { get; set; } = true;
+
 
         public string LayoutData { get; set; }
 
@@ -69,51 +58,9 @@ namespace POEHideoutGround.Pages.Calculator
         public TileData[] waterData;
         public TileData[] grassPatchesData;
 
-        [Parameter]
         public TileData SelectedGroundTile { get; set; }
-
-        public TileData SelectedWaterTile
-        {
-            get
-            {
-                if (waterDisabled)
-                {
-                    return null;
-                }
-
-                foreach (var tile in waterData)
-                {
-                    if (tile.Key == SelectedWaterKey)
-                    {
-                        return tile;
-                    }
-                }
-
-                return null;
-            }
-        }
-
-        public TileData SelectedGrassPatchesTile
-        {
-            get
-            {
-                if (grassPatchesDisabled)
-                {
-                    return null;
-                }
-
-                foreach (var tile in grassPatchesData)
-                {
-                    if (tile.Key == SelectedGrassPatchesKey)
-                    {
-                        return tile;
-                    }
-                }
-
-                return null;
-            }
-        }
-
+        public TileData SelectedWaterTile { get; set; }
+        public TileData SelectedGrassPatchesTile { get; set; }
 
 
         #endregion
@@ -128,18 +75,22 @@ namespace POEHideoutGround.Pages.Calculator
             GenerateGrassPatches();
 
             ErrorCatching();
+
+            HasNoTiles = CurrentCount == 0;
         }
 
 
         public void Clear()
         {
             ClearLayoutData();
+
+            HasNoTiles = true;
         }
 
 
         public void ClearLayoutData()
         {
-            currentCount = 0;
+            CurrentCount = 0;
             LayoutData = "";
         }
 
@@ -162,7 +113,7 @@ namespace POEHideoutGround.Pages.Calculator
                     LayoutData += $"{SelectedGroundTile.Name} = {{ Hash={SelectedGroundTile.Hash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={SelectedGroundTile.Var} }}\n";
 
 
-                    currentCount++;
+                    CurrentCount++;
                 }
             }
         }
@@ -179,7 +130,7 @@ namespace POEHideoutGround.Pages.Calculator
                 {
                     LayoutData += $"{SelectedWaterTile.Name} = {{ Hash={SelectedWaterTile.Hash}, X={x}, Y={y}, Rot={defaultRotation}, Flip=0, Var={SelectedWaterTile.Var} }}\n";
 
-                    currentCount++;
+                    CurrentCount++;
                 }
             }
         }
@@ -260,7 +211,7 @@ namespace POEHideoutGround.Pages.Calculator
 
                     LayoutData += $"{SelectedGrassPatchesTile.Name} = {{ Hash={SelectedGrassPatchesTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedGrassPatchesTile.Var} }}\n";
 
-                    currentCount++;
+                    CurrentCount++;
 
                 }
             }
