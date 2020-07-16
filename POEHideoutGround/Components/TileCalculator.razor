@@ -1,27 +1,25 @@
 ﻿@inherits TileCalculatorBase
 
 <Styled>
-    .test{ 
-        background-color:blue;
-        color:white;
-        font-size:50px;
+    .background { 
+       outline-width: thick;
+        outline-style: solid;
+        outline-color: gray;
+        width: 100%;
+        background-color:white;
     }
 </Styled>
 
-<div class="test">Some text.</div>
+<Styled MediaQuery="MediaQueries.LargerThanMobile">
+    .background {
+            padding: 30px;
+            background-color:orange;
+        }
+</Styled>
 
-@code {
-    string test;
-}
 
 
-<div style="outline-width: thick;
-        outline-style: solid;
-        outline-color: gray;
-        padding: 30px;
-        width: 100%;
-        background-color:white;
-    ">
+<div class="background">
     <div style="display:grid;grid-template-columns:60% 40%;grid-gap:20px">
         <div class="form-group">
 
