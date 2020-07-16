@@ -1,5 +1,18 @@
 ﻿@inherits TileCalculatorBase
 
+<Styled @bind-Classname="@test">
+    background-color:blue;
+    color:white;
+    font-size:50px;
+</Styled>
+
+<div class="@test">Some text.</div>
+
+@code {
+    string test;
+}
+
+
 <div style="outline-width: thick;
         outline-style: solid;
         outline-color: gray;
@@ -57,5 +70,4 @@
             <div style="flex:1" />
         </div>
     </div>
-
 </div>

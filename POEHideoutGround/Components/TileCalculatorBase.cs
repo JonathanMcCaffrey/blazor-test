@@ -1,16 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components;
 using POEHideoutGround.Data;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace POEHideoutGround.Components
 {
-    /// <summary>
-    /// Test summary
-    /// </summary>
     public class TileCalculatorBase : ComponentBase
     {
-       
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
@@ -118,7 +113,6 @@ namespace POEHideoutGround.Components
 
             set { }
         }
-
 
         public string SelectedImage
         {
