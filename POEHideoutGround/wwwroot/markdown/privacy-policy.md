@@ -28,7 +28,7 @@ Anything can be used poorly. I'll add an option to opt-in to that if we get ther
 **Okay, so like those optional "sharing data" checkboxes *that start as unchecked.* I am happy with that.** <br/>
 Glad to hear.
 
-**Browsing the website some more, the roadmap mentions "Login/profile, data and hideout saving." If that is implemented, how are you going to make the GDPR compliant?**<br />
+**Browsing the website some more, the roadmap mentions "Login/profile, data and hideout saving." If that is implemented, how are you going to make that GDPR compliant?**<br />
 For that, I would use a third-party identity and data solution, probably brainCloud. A login/signup and profile page would be added. You would be able to export and delete your data, such as save files and the account itself. And that would be everything needed for reasonable compliance. But a feature like that would come way later, and would only be justified when sophisticated hideout design features are added to the website. 
 
 **What if I forget I made an account on this website, or become incapacitated to the point I can't delete my account?**<br />
