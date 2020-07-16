@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using MatBlazor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using POEHideoutGround.Components;
 using POEHideoutGround.Data;
 using System;
-using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace POEHideoutGround.Pages.Calculator
@@ -13,6 +15,31 @@ namespace POEHideoutGround.Pages.Calculator
     public class CalculatorBase : ComponentBase
     {
 
+        [Inject]
+        protected HttpClient Http { get; set; }
+
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
+        protected TileCalculator GroundComponent;
+
+        protected override async Task OnInitializedAsync()
+        {
+            //TODO: This loading seems too slow. Look into why, and speed this up
+            groundData = await Http.GetJsonAsync<TileData[]>("data/ground.json");
+            waterData = await Http.GetJsonAsync<TileData[]>("data/water.json");
+            grassPatchesData = await Http.GetJsonAsync<TileData[]>("data/grassPatches.json");
+
+            GroundComponent.Refresh();
+        }
+
+
+        public async Task CopyTextToClipboard()
+        {
+            await JSRuntime.InvokeVoidAsync("clipboardCopy.copyText", LayoutData);
+        }
+
         public static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var: "2", hash: "1798490749", image: "dirt_3_l");
         public static TileData DefaultWaterTile = new TileData(name: "Water Plane", var: "22", hash: "1179014731", image: "water_23_l");
         public static TileData DefaultGrassPatchesTile = new TileData(name: "Grass Patch", var: "4", hash: "3856837925", image: "grasspatch_5_l");
@@ -21,10 +48,6 @@ namespace POEHideoutGround.Pages.Calculator
         public bool groundDisabled { get; set; } = false;
         public bool waterDisabled { get; set; } = true;
         public bool grassPatchesDisabled { get; set; } = true;
-        
-        string SelectedGroundKey { get; set; } = DefaultGroundTile.Key;
-        string SelectedWaterKey { get; set; } = DefaultWaterTile.Key;
-        string SelectedGrassPatchesKey { get; set; } = DefaultGrassPatchesTile.Key;
 
         #region varibles
         int minX = 153;
