@@ -1,19 +1,5 @@
 ﻿<!DOCTYPE html>
 
-<script>
-    window.clipboardCopy = {
-        copyText: function (text) {
-            navigator.clipboard.writeText(text).then(function () {
-                alert("Copied layout data.");
-            })
-                .catch(function (error) {
-                    alert(error);
-                });
-        }
-    };
-</script>
-
-
 <html>
 
 <head>
@@ -23,6 +9,17 @@
     <base href="/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
+
+    <script src="_content/MatBlazor/dist/matBlazor.js"></script>
+    <link href="_content/MatBlazor/dist/matBlazor.css" rel="stylesheet" />
+
+    <script>
+        window.clipboardCopy = {
+            copyText: function (text) {
+                navigator.clipboard.writeText(text);
+            }
+        }
+    </script>
 </head>
 
 
@@ -36,5 +33,4 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
-
 </html>

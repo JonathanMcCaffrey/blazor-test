@@ -22,6 +22,9 @@ namespace POEHideoutGround.Pages.Calculator
         [Inject]
         protected IJSRuntime JSRuntime { get; set; }
 
+        [Inject]
+        protected IMatToaster Toaster { get; set; }
+
         protected TileCalculator GroundComponent;
 
         protected override async Task OnInitializedAsync()
@@ -37,7 +40,10 @@ namespace POEHideoutGround.Pages.Calculator
 
         public async Task CopyTextToClipboard()
         {
+
             await JSRuntime.InvokeVoidAsync("clipboardCopy.copyText", LayoutData);
+
+            Toaster.Add("Copied to clipboard", MatToastType.Info, "Action");
         }
 
         public static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var: "2", hash: "1798490749", image: "dirt_3_l");
