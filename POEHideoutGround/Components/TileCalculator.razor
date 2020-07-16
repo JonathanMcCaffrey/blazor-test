@@ -1,12 +1,14 @@
 ﻿@inherits TileCalculatorBase
 
-<Styled @bind-Classname="@test">
-    background-color:blue;
-    color:white;
-    font-size:50px;
+<Styled>
+    .test{ 
+        background-color:blue;
+        color:white;
+        font-size:50px;
+    }
 </Styled>
 
-<div class="@test">Some text.</div>
+<div class="test">Some text.</div>
 
 @code {
     string test;
