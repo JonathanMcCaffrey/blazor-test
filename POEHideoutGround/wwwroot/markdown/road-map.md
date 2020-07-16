@@ -22,5 +22,5 @@
 
 ## Maybe...
 
-- Login/profile, and data and hideout saving.
+- Login/profile, data and hideout saving.
 - Unit Tests.
