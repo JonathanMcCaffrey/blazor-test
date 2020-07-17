@@ -1,12 +1,4 @@
 @page "/information"
-@inject HttpClient Http
-@((MarkupString)markdown)
 
-@code {
-    string markdown;
+<MarkdownContent MarkdownFileName="information"/>
 
-    protected override async Task OnInitializedAsync()
-    {
-        markdown = Markdig.Markdown.ToHtml(await Http.GetStringAsync("markdown/information.md"));
-    }
-}

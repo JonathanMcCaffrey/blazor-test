@@ -12,11 +12,12 @@ This tool is able to function because the POE hideout file is written in plain-t
 
 ## Exporting the Hideout File
 
-<img src="images/hideout/Hideout.png" width='600px'> </img>
+
+<img src="images/hideout/Hideout.png" style="max-width:100%;margin-bottom:10px;"/>
 
 After you customize your hideout, there is an **[Export]** feature right near the other hideout editor UI buttons.
 
-<img src="images/hideout/Export.png" width='600px'> </img>
+<img src="images/hideout/Export.png" style="max-width:100%;margin-bottom:10px;"/>
 
 Export the hideout file to your desktop, and you can name it `MyOriginalHideout.hideout`.
 
@@ -52,7 +53,7 @@ You can see GGG *currently* sorts that data by placing the main hideout name fir
 
 From this plain text, you can delete a line that contains a bit of decor, such as `Red Carpet = { Hash=1255200948, X=359, Y=314, Rot=0, Flip=0, Var=0 }`, save the file as `MyModifiedHideout.hideout`, and **[Import]** that changed hideout file.
 
-<img src="images/hideout/Import.png" width='600px'> </img>
+<img src="images/hideout/Import.png" style="max-width:100%;margin-bottom:10px;"/>
 
 As you hopefully expected, the Red Carpet is gone when re-importing the file.
 
@@ -62,7 +63,7 @@ We can use this logic to also add in any decor we want, without having to manual
 
 `Slave Pens Bed = { Hash=1971960958, X=358, Y=324, Rot=0, Flip=0, Var=0 }`
 
-Focusing on Slave Pens Bed, we can see the data is broken up into 7 parts. The name Slave Pens, the hash 1971960958, the x and y position data of 358 and 324, the rotation 0, the flip 0, and the variant 0.
+Focusing on Slave Pens Bed, we can see the data is broken up into 7 parts. The name Slave Pens Bed, the hash 1971960958, the x and y position data of 358 and 324, the rotation 0, the flip 0, and the variant 0.
 
 Most of those items are self explanatory. 
 
@@ -87,12 +88,12 @@ Currently, you can select a Ground Tile, Water Tile, and Grass Patches.
 
 After doing so, click the **[Generate]** button on the calculator. This will create all the data need to completely cover the ground with those tiles.
 
-<img src="images/hideout/Generate.png" width='600px'> </img>
+<img src="images/hideout/Generate.png" style="max-width:100%;margin-bottom:10px;"/>
 
 Copy this data, and paste it into your modified hideout file, and **[Import]** the file into POE with the new change.
 
 Your hideout is now covered with your chosen ground.
 
-<img src="images/hideout/Grounded.png" width='600px'> </img>
+<img src="images/hideout/Grounded.png" style="max-width:100%;margin-bottom:10px;"/>
 
 If you regret your ground choice and want to switch later, just delete previous ground you added to the hideout file, and paste in the new ground you want.

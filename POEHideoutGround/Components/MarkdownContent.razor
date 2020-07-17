@@ -1,0 +1,14 @@
+﻿@inherits MarkdownContentBase
+
+
+@code { string c_markdownContainer; }
+<Styled @bind-Classname="@c_markdownContainer">
+    padding: 8px;
+    width: 1231px;
+    max-width: 100%;
+    overflow: none;
+</Styled>
+
+<div class="@c_markdownContainer">
+    @((MarkupString)Markdown)
+</div>
