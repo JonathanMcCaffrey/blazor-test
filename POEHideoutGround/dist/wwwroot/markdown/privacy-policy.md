@@ -23,7 +23,18 @@ Cool.
 This website would use a third-party analytics provider, probably Google Analytics. Data from events on the website would go to GA, and the data would appear on GA's dashboard. Data like what calculator settings are being used, what pages are being visited, and other data GA collects by default, like country of origin.
 
 **I am not sure I am happy with that. Aren't cookies and data collection terrible for privacy?** <br/>
-Anything can be used poorly. I'll add an option to opt-in to that if we get there. Probably via a cookie, that will save if the current browser state is opt-in to data collection and/or cookies. That means having to opt-in whenever the state is lost. Which kind of defeats the purpose of analytics? A popup or banner could be annoying to request the opt-in, so a toggle option would probably be added to this page. *So to restate, this toggle would have amnesia and would eventually forget the opt-in, automatically opting you out.* Actually... rechecking this page to look at a toggle sounds tedious, so perhaps this privacy toggle will also appear somewhere non intrusively on the UI for people that do want to opt-in with one click.
+Anything can be used poorly. I'll add an option to opt-in to that if we get there. Probably via a cookie, that will save if the current browser state is opt-in to data collection and/or cookies. That means having to opt-in whenever the state is lost. Which kind of defeats the purpose of analytics? A popup or banner could be annoying to request the opt-in, so a toggle option would probably be added to this page. *So to restate, this toggle would have amnesia and would eventually forget the opt-in, automatically opting you out.* Actually... rechecking this page to look at a toggle sounds tedious, so perhaps this privacy toggle will also appear somewhere non intrusively on the UI for people that do want to opt-in with one click. Or I should say two clicks, one to toggle cookies, and then one to then toggle analytics.
 
 **Okay, so like those optional "sharing data" checkboxes *that start as unchecked.* I am happy with that.** <br/>
 Glad to hear.
+
+**Browsing the website some more, the roadmap mentions "Login/profile, data and hideout saving." If that is implemented, how are you going to make that GDPR compliant?**<br />
+For that, I would use a third-party identity and data solution, probably brainCloud. A login/signup and profile page would be added. You would be able to export and delete your data, such as save files and the account itself. And that would be everything needed for reasonable compliance. But a feature like that would come way later, and would only be justified when sophisticated hideout design features are added to the website. 
+
+**What if I forget I made an account on this website, or become incapacitated to the point I can't delete my account?**<br />
+Suppose the system will also delete accounts that have become inactive. I am not a fan of the concept of automatic deletions, from a bad experience of an account being automatically deleted. But, as long as people aren't surprised by it, and can easily re-create their account by importing their personally saved copies of that data, it sounds like it could be great implementation. 
+
+**Can I get a tl;dr?**<br />
+This website doesn't have your data. If it ever does, it will be in a reasonable way.
+
+<br/><br/>

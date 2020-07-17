@@ -6,7 +6,7 @@ You can create an issue on the <a href="https://github.com/JonathanMcCaffrey/poe
 No. I only briefly checked other hideouts, but the basic ground tool doesn't appear to get good results. z-layer issues. <br/>
 Plus the Celestial Nebula Hideout is a pretty unique case, given it doesn't contain "normal" ground. <br/>
 
-<img width="600" src="images/faq/ZLayerIssues.png"> <br/>
+<img src="images/faq/ZLayerIssues.png" style="max-width:100%;margin-bottom:10px;"/> <br/>
 
 If the tool did incorporate more hideouts, it would probably be due to a new feature added to the tool, that fit those hideouts.
 
