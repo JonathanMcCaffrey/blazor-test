@@ -4,21 +4,19 @@
     <NavMenu />
 </div>
 
-<Styled MediaQuery="MediaQueries.LargerThanMobile">
-    .container { 
-        padding: 24px;
-    
-    }
+@code { string main_Container; }
+<Styled @bind-Classname="main_Container">
+    padding:0px;
 </Styled>
 
 
-<Styled>
-    .container { 
-        border:2px solid red;
-    }
+<Styled Classname="main_Container" MediaQuery="MediaQueries.LargerThanMobile">
+    padding: 24px;
 </Styled>
 
 
-<div class="container">
+
+
+<div class="@main_Container">
     @Body
 </div>

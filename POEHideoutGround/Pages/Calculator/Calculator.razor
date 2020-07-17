@@ -1,8 +1,10 @@
 ﻿@page "/calculator"
 @inherits POEHideoutGround.Pages.Calculator.CalculatorBase
 
-@code { private string calc_HelpBanner;  }
-<Styled @bind-Classname="calc_HelpBanner" MediaQuery="MediaQueries.Mobile">
+<br />
+
+@code { private string calc_HelpBanner; }
+<Styled @bind-Classname="@calc_HelpBanner" MediaQuery="MediaQueries.Mobile">
     display:none;
 </Styled>
 
@@ -13,148 +15,147 @@
 </div>
 
 
-@code { private string calc_Container;  }
-<Styled @bind-ClassName="calc_Container" MediaQuery="MediaQueries.LargerThanMobile">
+@code { private string calc_Container; }
+
+<Styled @bind-Classname="@calc_Container">
     display:grid;
     width:100%;
     grid-gap:5px;
-    grid-template-columns:70% 30%;
-    border:20px solid yellow;
-    
+    grid-template-columns:100%;
+    padding: 6px;
+    overflow-x: scroll;
 </Styled>
 
-<Styled ClassName="calc_Container" MediaQuery="MediaQueries.Mobile">
-        display:grid;
-        width:100%;
-        grid-gap:5px;
-        grid-template-columns:100%;
-        border:20px solid purple;
+
+<Styled ClassName="@calc_Container" MediaQuery="MediaQueries.LargerThanMobile">
+    grid-template-columns:70% 30%;
 </Styled>
+
 
 <div class="@calc_Container">
-    
-    <Styled MediaQuery="MediaQueries.LargerThanMobile">
-        .tileCalcBox { 
-            outline-width: thick;
-                    outline-style: solid;
-                    outline-color: gray;
-                    height: 800px;
-                    overflow-y: scroll;
-        }
+
+    @code { private string calc_tileArea; }
+    <Styled @bind-Classname="@calc_tileArea" MediaQuery="MediaQueries.LargerThanMobile">
+        height: 800px;
+        overflow-y: scroll;
     </Styled>
-    
-    <div class="tileCalcBox">
-        <TileCalculator TileTypeName="Ground" @ref="GroundComponent" CheckedByDefault=true @bind-SelectedTile="SelectedGroundTile" TileData=@groundData DefaultTileData=@DefaultGroundTile/>
-        <TileCalculator TileTypeName="Water" @bind-SelectedTile="SelectedWaterTile" TileData=@waterData DefaultTileData=@DefaultWaterTile/>
+
+    <div class="@calc_tileArea">
+        <TileCalculator TileTypeName="Ground" @ref="GroundComponent" CheckedByDefault=true @bind-SelectedTile="SelectedGroundTile" TileData=@groundData DefaultTileData=@DefaultGroundTile />
+        <TileCalculator TileTypeName="Water" @bind-SelectedTile="SelectedWaterTile" TileData=@waterData DefaultTileData=@DefaultWaterTile />
         <TileCalculator TileTypeName="Grass Patches" @bind-SelectedTile="SelectedGrassPatchesTile" TileData=@grassPatchesData DefaultTileData=@DefaultGrassPatchesTile>
-            <br/><br/>
-            <div class="form-group row">
-                <label class="col-2 col-form-label">Placement Chaos</label>
-                <div class="col-10">
+            <br /><br />
+            <div>
+                <label>Placement Chaos</label>
+                <div>
                     <input class="form-control" type="number" @bind="GrassPlacementChaos">
                 </div>
                 <small id="chaosHelp" class="form-text text-muted">Randomness of the placement, for more organically placed grass.</small>
             </div>
-
-            <div class="form-group row">
-                <label class="col-2 col-form-label">Extra Spacing</label>
-                <div class="col-10">
+            <br />
+            <div>
+                <label>Extra Spacing</label>
+                <div>
                     <input class="form-control" type="number" @bind="GrassExtraSpacing">
                 </div>
                 <small id="spacingHelp" class="form-text text-muted">Extra spacing between grass, to spread out grass patches.</small>
             </div>
         </TileCalculator>
     </div>
-    
-    <Styled MediaQuery="MediaQueries.LargerThanMobile">
-            .buttonCalcBox { 
-                height: 800px;
-                        outline-width: thick;
-                        outline-style: solid;
-                        outline-color: gray;
-            }
-        </Styled>
-    
-    <div class="buttonCalcBox">
+
+    @code { string calc_buttonBox; }
+    <Styled @bind-Classname="@calc_buttonBox" MediaQuery="MediaQueries.LargerThanMobile">
+        height: 800px;
+    </Styled>
+
+    <div class="@calc_buttonBox">
         <div style="display: grid;width: 100%;height: 100%;grid-template-rows: 70% 30%">
-            
-            
-              
-            <Styled>
-                .rawdataBox {
-                    display:none;
-                }
+
+
+
+            @code { string calc_rawdataBox;}
+            <Styled @bind-Classname="@calc_rawdataBox">
+                display:none;
             </Styled>
-            <Styled MediaQuery="MediaQueries.LargerThanMobile">
-                .rawdataBox { 
-                outline-width: thick;
-                outline-style: solid;
-                outline-color: gray;
+            <Styled Classname="@calc_rawdataBox" MediaQuery="MediaQueries.LargerThanMobile">
+                display:block;
                 width: 100%;
                 overflow-y: hidden;
                 overflow-x: hidden;
                 background-color: white;
-                }
             </Styled>
-          
-            
-            <div class="rawdataBox">
-                <pre style="        margin: 0px;
-        width: 100%;
-        height: 100%;
-        overflow-y: scroll;
-        overflow-x: hidden;">@LayoutData</pre>
+
+
+            <div class="@calc_rawdataBox">
+                @code { string calc_rawData; }
+                <Styled @bind-Classname="@calc_rawData" MediaQuery="MediaQueries.LargerThanMobile">
+                    width: 100%;
+                    overflow-y: hidden;
+                    overflow-x: hidden;
+                    background-color: white;
+                </Styled>
+
+                <pre class="@calc_rawData">@LayoutData</pre>
             </div>
 
-             <Styled MediaQuery="MediaQueries.LargerThanMobile">
-                            .infoContainer { 
-                                outline-width: thick;
-                                       outline-style: solid;
-                                        outline-color: gray;
-                                        padding: 6px;
-                                        width: 100%;
-                                        background-color:white;
-                            }
-                        </Styled>
-                      
-                        
-            
-            <div class="infoContainer">
-                   <Styled MediaQuery="MediaQueries.LargerThanMobile">
-                                            .buttonContainer { 
-                                                display:grid;
-                                                grid-gap:6px;
-                                                grid-template-columns:auto auto auto;
-                                                width:100%;
-                                            }
-                                        </Styled>
-                
-                <div class="buttonContainer">
-                                         <Styled>
-                                                .button { 
-                                                height: 48px;
-                            }
-                    </Styled>
-                    
-                    <Styled MediaQuery="MediaQueries.LargerThanMobile">
-                        .button {
-                        height: 24px;
-                        }
-                    </Styled>
 
-                    <button class="button btn btn-primary" @onclick="Generate">Generate</button>
-                    <button disabled="@HasNoTiles" class="button btn btn-primary" @onclick="Clear">Clear</button>
-                    <button disabled="@HasNoTiles" class="button btn btn-primary" @onclick="CopyTextToClipboard">Copy</button>
+
+            @code { string mobileInfoContainer; }
+            <Styled @bind-Classname="@mobileInfoContainer">
+                display: block;
+            </Styled>
+            <Styled Classname="@mobileInfoContainer" MediaQuery="MediaQueries.LargerThanMobile">
+                display: none;
+                padding: 6px;
+                width: 100%;
+                background-color:white;
+            </Styled>
+
+            <div class="@mobileInfoContainer">
+                
+                <button class="btn btn-primary" @onclick="GenerateAndCopy">Generate and Copy</button>
+                
+                @if (CurrentCount > 0)
+                {
+                    <p>@CurrentCount tiles generated.</p>
+                    <p>Data copied to clipboard. Share this data with your desktop computer, and copy that data into your hideout file.</p>
+                }
+
+            </div>
+
+
+
+
+            @code { string infoContainer; }
+            <Styled @bind-Classname="@infoContainer">
+                display: none;
+            </Styled>
+            <Styled Classname="@infoContainer" MediaQuery="MediaQueries.LargerThanMobile">
+                display: block;
+                padding: 6px;
+                width: 100%;
+                background-color:white;
+            </Styled>
+
+            <div class="@infoContainer">
+                @code { string calc_buttonContainer;}
+                <Styled @bind-Classname="@calc_buttonContainer">
+                    display:grid;
+                    grid-template-columns: 100%;
+                    grid-gap: 6px;
+                    width: 100%;
+                </Styled>
+
+                <div class="@calc_buttonContainer">
+                    <button class="btn btn-primary" @onclick="Generate">Generate</button>
+                    <button disabled="@HasNoTiles" class="btn btn-primary" @onclick="Clear">Clear</button>
+                    <button disabled="@HasNoTiles" class="btn btn-primary" @onclick="CopyTextToClipboard">Copy</button>
                 </div>
 
                 @if (CurrentCount > 0)
                 {
-                    <p><br/>@CurrentCount tiles generated.</p>
-                }
-
-                @if (CurrentCount > 0)
-                {
-                    <p><br/>Copy this data and paste it into your hideout file. <i>Don't know how?</i> Check the <a href="/Information"><b>Information</b></a> section.</p>
+                    <p>@CurrentCount tiles generated.</p>
+                    <p>Copy this data and paste it into your hideout file. <i>Don't know how?</i> Check the <a href="/Information"><b>Information</b></a> section.</p>
                 }
 
             </div>

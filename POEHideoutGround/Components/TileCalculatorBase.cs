@@ -69,7 +69,7 @@ namespace POEHideoutGround.Components
 
                 IsDisabled = !CheckedByDefault;
 
-                OnSelectedTileChanged();
+                await OnSelectedTileChanged();
 
 
             }

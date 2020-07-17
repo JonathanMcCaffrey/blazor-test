@@ -94,6 +94,12 @@ namespace POEHideoutGround.Pages.Calculator
 
         #endregion
 
+        public void GenerateAndCopy()
+        {
+            Generate();
+            CopyTextToClipboard();
+        }
+
         public void Generate()
         {
             ClearLayoutData();
