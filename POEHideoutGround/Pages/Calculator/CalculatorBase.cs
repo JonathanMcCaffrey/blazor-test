@@ -282,7 +282,7 @@ namespace POEHideoutGround.Pages.Calculator
             if (SelectedOriathTile == null) { return; }
 
 
-            in xSteps = 0;
+            int xSteps = 0;
             for (int x = minX + xOffset; x <= maxX; x += medTileDimensions)
             {
                 xSteps++;
