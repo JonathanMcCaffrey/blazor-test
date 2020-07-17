@@ -5,14 +5,19 @@
 </div>
 
 @code { string main_Container; }
-<Styled @bind-Classname="main_Container">
-    padding:0px;
+<Styled @bind-Classname="@main_Container">
+    padding: 8px;
+    width: 800px;
+    max-width: 100%;
+    overflow: none;
 </Styled>
 
 
-<Styled Classname="main_Container" MediaQuery="MediaQueries.LargerThanMobile">
+<Styled Classname="@main_Container" MediaQuery="MediaQueries.LargerThanMobile">
     padding: 24px;
 </Styled>
+
+
 
 
 
