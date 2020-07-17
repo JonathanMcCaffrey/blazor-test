@@ -4,8 +4,21 @@
     <NavMenu />
 </div>
 
-<div class="main">
-    <div class="content px-4">
-        @Body
-    </div>
+<Styled MediaQuery="MediaQueries.LargerThanMobile">
+    .container { 
+        padding: 24px;
+    
+    }
+</Styled>
+
+
+<Styled>
+    .container { 
+        border:2px solid red;
+    }
+</Styled>
+
+
+<div class="container">
+    @Body
 </div>
