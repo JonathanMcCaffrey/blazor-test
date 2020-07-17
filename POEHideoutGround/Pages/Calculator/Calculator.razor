@@ -61,6 +61,22 @@
                 <small id="spacingHelp" class="form-text text-muted">Extra spacing between grass, to spread out grass patches.</small>
             </div>
         </TileCalculator>
+
+        <TileCalculator TileTypeName="Oriath" @bind-SelectedTile="SelectedOriathTile" TileData=@oriathData DefaultTileData=@DefaultOriathTile>
+            <br /><br />
+            <TileCalculator TileTypeName="SubOriath" @bind-SelectedTile="SelectedOriathSubTile" TileData=@oriathData DefaultTileData=@DefaultOriathSubTile>
+                <br /><br />
+                <div style="background-color:white">
+                    <label for="SubOriath">Pattern Choice</label>
+                    <select class="form-control" @bind="@SelectedPattern">
+                        <option value=0 selected>Vertical Lines</option>
+                        <option value=1 selected>Horizontal Lines</option>
+                        <option value=2 selected>Checkerboard</option>
+                    </select>
+                </div>
+            </TileCalculator>
+        </TileCalculator>
+
     </div>
 
     @code { string calc_buttonBox; }
@@ -112,9 +128,9 @@
             </Styled>
 
             <div class="@mobileInfoContainer">
-                
+
                 <button class="btn btn-primary" @onclick="GenerateAndCopy">Generate and Copy</button>
-                
+
                 @if (CurrentCount > 0)
                 {
                     <p>@CurrentCount tiles generated.</p>

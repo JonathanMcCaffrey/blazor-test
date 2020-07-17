@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using POEHideoutGround.Components;
 using POEHideoutGround.Data;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -30,9 +31,13 @@ namespace POEHideoutGround.Pages.Calculator
         protected override async Task OnInitializedAsync()
         {
             //TODO: This loading seems too slow. Look into why, and speed this up
-            groundData = await Http.GetJsonAsync<TileData[]>("data/ground.json");
-            waterData = await Http.GetJsonAsync<TileData[]>("data/water.json");
-            grassPatchesData = await Http.GetJsonAsync<TileData[]>("data/grassPatches.json");
+            groundData = await Http.GetJsonAsync<List<TileData>>("data/ground.json");
+            waterData = await Http.GetJsonAsync< List<TileData>>("data/water.json");
+            grassPatchesData = await Http.GetJsonAsync<List<TileData>>("data/grassPatches.json");
+            oriathData = await Http.GetJsonAsync<List<TileData>>("data/oriath.json");
+
+            List<TileData> medOriathTiles = oriathData.FindAll(e => e.Size == 46);
+            oriathData = medOriathTiles;
 
             GroundComponent.Refresh();
         }
@@ -46,9 +51,12 @@ namespace POEHideoutGround.Pages.Calculator
             Toaster.Add("Copied to clipboard", MatToastType.Info, "Action");
         }
 
-        public static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var: "2", hash: "1798490749", image: "dirt_3_l");
-        public static TileData DefaultWaterTile = new TileData(name: "Water Plane", var: "22", hash: "1179014731", image: "water_23_l");
-        public static TileData DefaultGrassPatchesTile = new TileData(name: "Grass Patch", var: "4", hash: "3856837925", image: "grasspatch_5_l");
+        public static TileData DefaultGroundTile = new TileData(name: "Dirt Ground", var: "2", hash: "1798490749", image: "dirt_3_l", size: 69);
+        public static TileData DefaultWaterTile = new TileData(name: "Water Plane", var: "22", hash: "1179014731", image: "water_23_l", size: 69);
+        public static TileData DefaultGrassPatchesTile = new TileData(name: "Grass Patch", var: "4", hash: "3856837925", image: "grasspatch_5_l", size: 69);
+        public static TileData DefaultOriathTile = new TileData(name: "Oriath Ground", var: "5", hash: "3123067737", image: "oriath_6_m", size: 46);
+        public static TileData DefaultOriathSubTile = new TileData(name: "Oriath Ground", var: "1", hash: "3123067737", image: "oriath_2_m", size: 46);
+
 
 
         public bool groundDisabled { get; set; } = false;
@@ -66,6 +74,10 @@ namespace POEHideoutGround.Pages.Calculator
 
         int largeTileDimensions = 69;
         int grassPatchDimensions = 30;
+        int medTileDimensions = 46;
+        // int smallTileDimensions = 23;
+
+
 
         public int CurrentCount { get; set; }
 
@@ -83,13 +95,18 @@ namespace POEHideoutGround.Pages.Calculator
         //Rot=1
 
         // Set in Calculator.razor, as I can't seem to easily set this otherwise...
-        public TileData[] groundData;
-        public TileData[] waterData;
-        public TileData[] grassPatchesData;
+        public List<TileData> groundData;
+        public List<TileData> waterData;
+        public List<TileData> oriathData;
+        public List<TileData> grassPatchesData;
 
         public TileData SelectedGroundTile { get; set; }
         public TileData SelectedWaterTile { get; set; }
         public TileData SelectedGrassPatchesTile { get; set; }
+        public TileData SelectedOriathTile { get; set; }
+
+        public TileData SelectedOriathSubTile { get; set; }
+
 
 
         #endregion
@@ -106,6 +123,7 @@ namespace POEHideoutGround.Pages.Calculator
             GenerateGround();
             GenerateWater();
             GenerateGrassPatches();
+            GenerateOriath();
 
             ErrorCatching();
 
@@ -243,6 +261,56 @@ namespace POEHideoutGround.Pages.Calculator
                     newY = newY > minY ? newY = minY : newY < maxY ? maxY : newY;
 
                     LayoutData += $"{SelectedGrassPatchesTile.Name} = {{ Hash={SelectedGrassPatchesTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedGrassPatchesTile.Var} }}\n";
+
+                    CurrentCount++;
+
+                }
+            }
+        }
+
+
+        protected int SelectedPattern { get; set; }
+        private void GenerateOriath()
+        {
+            // Enum for Patterns
+
+            if (SelectedOriathTile == null) { return; }
+
+
+            var xSteps = 0;
+            var ySteps = 0;
+            for (int x = minX + xOffset; x <= maxX; x += medTileDimensions)
+            {
+                xSteps++;
+
+                for (int y = minY - yOffset; y >= maxY; y -= medTileDimensions)
+                {
+                    ySteps++;
+
+                    int newX = (int)(x);
+                    int newY = (int)(y);
+
+                    newX = newX < minX ? newX = minX : newX > maxX ? maxX : newX;
+                    newY = newY > minY ? newY = minY : newY < maxY ? maxY : newY;
+
+
+                    if (ySteps % 2 == 0 && SelectedOriathSubTile != null && SelectedPattern == 0)
+                    {
+                        LayoutData += $"{SelectedOriathSubTile.Name} = {{ Hash={SelectedOriathSubTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedOriathSubTile.Var} }}\n";
+                    }
+                    else if (xSteps % 2 == 0 && SelectedOriathSubTile != null && SelectedPattern == 1)
+                    {
+                        LayoutData += $"{SelectedOriathSubTile.Name} = {{ Hash={SelectedOriathSubTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedOriathSubTile.Var} }}\n";
+                    }
+                    else if ((ySteps % 2 == 0 || xSteps % 2 == 0) && SelectedOriathSubTile != null && SelectedPattern == 2)
+                    {
+                        LayoutData += $"{SelectedOriathSubTile.Name} = {{ Hash={SelectedOriathSubTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedOriathSubTile.Var} }}\n";
+                    }
+                    else
+                    {
+                        LayoutData += $"{SelectedOriathTile.Name} = {{ Hash={SelectedOriathTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedOriathTile.Var} }}\n";
+                    }
+
 
                     CurrentCount++;
 

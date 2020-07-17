@@ -24,6 +24,11 @@ namespace POEHideoutGround.Data
         public string Image { get; set; }
 
         /// <summary>
+        /// Size of the static tile variant.
+        /// </summary>
+        public int Size { get; set; }
+
+        /// <summary>
         /// Unique variant/hash key used by the calculator.
         /// </summary>
         public string Key
@@ -62,12 +67,13 @@ namespace POEHideoutGround.Data
 
         public TileData() { }
 
-        public TileData(string name, string var, string hash, string image)
+        public TileData(string name, string var, string hash, string image, int size)
         {
             Name = name;
             Var = var;
             Hash = hash;
             Image = image;
+            Size = size;
         }
     }
 }

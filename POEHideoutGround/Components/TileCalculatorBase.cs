@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using POEHideoutGround.Data;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace POEHideoutGround.Components
@@ -25,7 +26,7 @@ namespace POEHideoutGround.Components
         public TileData DefaultTileData { get; set; }
 
         [Parameter]
-        public TileData[] TileData { get; set; }
+        public List<TileData> TileData { get; set; }
 
 
         [Parameter]
