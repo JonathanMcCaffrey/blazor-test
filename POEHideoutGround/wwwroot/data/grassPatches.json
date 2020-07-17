@@ -3,13 +3,15 @@
     "name": "Grass Patch",
     "hash": "3856837925",
     "var": "4",
-    "image": "grasspatch_5_l"
+    "image": "grasspatch_5_l",
+    "type":  "grassPatches"
 
   },
   {
     "name": "Grass Patch",
     "hash": "3856837925",
     "var": "13",
-    "image": "grasspatch_14_l"
+    "image": "grasspatch_14_l",
+    "type": "grassPatches"
   }
 ]
