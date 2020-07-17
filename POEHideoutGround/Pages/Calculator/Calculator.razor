@@ -69,9 +69,10 @@
                 <div style="background-color:white">
                     <label for="SubOriath">Pattern Choice</label>
                     <select class="form-control" @bind="@SelectedPattern">
-                        <option value=0 selected>Vertical Lines</option>
-                        <option value=1 selected>Horizontal Lines</option>
-                        <option value=2 selected>Checkerboard</option>
+                        <option value=0>Vertical Lines</option>
+                        <option value=1>Horizontal Lines</option>
+                        <option value=2 selected>Cross Pattern</option>
+                        <option value=3>Checker Pattern</option>
                     </select>
                 </div>
             </TileCalculator>
@@ -138,8 +139,6 @@
                 }
 
             </div>
-
-
 
 
             @code { string infoContainer; }

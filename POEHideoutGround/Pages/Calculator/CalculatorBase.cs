@@ -10,9 +10,6 @@ using System.Threading.Tasks;
 
 namespace POEHideoutGround.Pages.Calculator
 {
-    /// <summary>
-    /// Test summary
-    /// </summary>
     public class CalculatorBase : ComponentBase
     {
 
@@ -32,7 +29,7 @@ namespace POEHideoutGround.Pages.Calculator
         {
             //TODO: This loading seems too slow. Look into why, and speed this up
             groundData = await Http.GetJsonAsync<List<TileData>>("data/ground.json");
-            waterData = await Http.GetJsonAsync< List<TileData>>("data/water.json");
+            waterData = await Http.GetJsonAsync<List<TileData>>("data/water.json");
             grassPatchesData = await Http.GetJsonAsync<List<TileData>>("data/grassPatches.json");
             oriathData = await Http.GetJsonAsync<List<TileData>>("data/oriath.json");
 
@@ -150,6 +147,16 @@ namespace POEHideoutGround.Pages.Calculator
             if (LayoutData == "")
             {
                 LayoutData = "No layout could be generated. Please ensure you have selected a tile, and you have it's generation enabled.";
+            }
+
+            if (SelectedGroundTile != null && SelectedOriathTile != null)
+            {
+                Toaster.Add("Don't use both Oriath and Ground tiles together. Will cause z-layer issues, toggle one of those options off.", MatToastType.Danger, "WARNING", null,
+                    config =>
+                    {
+                        config.RequireInteraction = true;
+
+                    });
             }
         }
 
@@ -272,17 +279,15 @@ namespace POEHideoutGround.Pages.Calculator
         protected int SelectedPattern { get; set; }
         private void GenerateOriath()
         {
-            // Enum for Patterns
-
             if (SelectedOriathTile == null) { return; }
 
 
-            var xSteps = 0;
-            var ySteps = 0;
+            in xSteps = 0;
             for (int x = minX + xOffset; x <= maxX; x += medTileDimensions)
             {
                 xSteps++;
 
+                int ySteps = 0;
                 for (int y = minY - yOffset; y >= maxY; y -= medTileDimensions)
                 {
                     ySteps++;
@@ -302,7 +307,11 @@ namespace POEHideoutGround.Pages.Calculator
                     {
                         LayoutData += $"{SelectedOriathSubTile.Name} = {{ Hash={SelectedOriathSubTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedOriathSubTile.Var} }}\n";
                     }
-                    else if ((ySteps % 2 == 0 || xSteps % 2 == 0) && SelectedOriathSubTile != null && SelectedPattern == 2)
+                    else if (((ySteps + 1) % 2 == 0 || (xSteps + 1) % 2 == 0) && SelectedOriathSubTile != null && SelectedPattern == 2)
+                    {
+                        LayoutData += $"{SelectedOriathSubTile.Name} = {{ Hash={SelectedOriathSubTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedOriathSubTile.Var} }}\n";
+                    }
+                    else if (((ySteps + (xSteps % 2)) % 2 == 0) && SelectedOriathSubTile != null && SelectedPattern == 3)
                     {
                         LayoutData += $"{SelectedOriathSubTile.Name} = {{ Hash={SelectedOriathSubTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedOriathSubTile.Var} }}\n";
                     }
@@ -311,9 +320,7 @@ namespace POEHideoutGround.Pages.Calculator
                         LayoutData += $"{SelectedOriathTile.Name} = {{ Hash={SelectedOriathTile.Hash}, X={newX}, Y={newY}, Rot={defaultRotation}, Flip=0, Var={SelectedOriathTile.Var} }}\n";
                     }
 
-
                     CurrentCount++;
-
                 }
             }
         }
