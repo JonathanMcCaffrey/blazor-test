@@ -1,3 +1,89 @@
 ﻿@page "/road-map"
 
-<MarkdownContent MarkdownFileName="road-map" />
+<style>
+
+
+
+    .demo-mat-card {
+        max-width: 400px;
+    }
+
+    .demo-mat-card-content {
+        padding: 1rem;
+    }
+
+    .demo-mat-card-clean-margin {
+        margin: 0px;
+    }
+</style>
+
+
+
+
+
+@code { string roadmap_grid;}
+<Styled @bind-Classname="@roadmap_grid">
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 20px;
+    width: 800px;
+    max-width: 100%;
+    justify-content: center;
+</Styled>
+
+<Styled Classname="@roadmap_grid" MediaQuery="MediaQueries.LargerThanMobile">
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 40px;
+</Styled>
+
+
+<div class="@roadmap_grid">
+    <div class="card" style="width: 18rem;">
+        <img src="images/tile/sewer_3_l.png" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">Dark Mode</h5>
+            <p class="card-text">Ability to toggle between light and dark themes.</p>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="images/tile/oriath_6_m.png" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">Tile Painting</h5>
+            <p class="card-text">Free form floor tile painting with grid snapping and small tile sizes.</p>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="images/tile/sand_3_l.png" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">Hideout File Editing</h5>
+            <p class="card-text">Import and edit current hideout file hideout for easy asset swapping.</p>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="images/tile/grasspatch_14_l.png" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">Advance Options</h5>
+            <p class="card-text"> Add customizable raw data into the calculator.</p>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="images/tile/wood_6_l.png" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">Online Profile</h5>
+            <p class="card-text"> Create an account and save hideout floor setups.</p>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="images/tile/water_12_s.png" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-title">To Be Determined</h5>
+            <p class="card-text">Other ideas that come up.</p>
+        </div>
+    </div>
+</div>

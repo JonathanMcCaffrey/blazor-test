@@ -2,16 +2,12 @@
 
 
 
-@code {
-    string tc_Container;
-}
-
+@code { string tc_Container;}
 <Styled @bind-Classname="@tc_Container">
     margin-top: 8px;
     display:grid;
     grid-template-columns:75% 25%;
 </Styled>
-
 
 <Styled Classname="@tc_Container" MediaQuery="MediaQueries.LargerThanMobile">
     grid-template-columns:60% 40%;
