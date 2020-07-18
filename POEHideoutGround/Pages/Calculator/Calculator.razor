@@ -1,7 +1,5 @@
 ﻿@page "/calculator"
-@inherits POEHideoutGround.Pages.Calculator.CalculatorBase
-
-<br />
+@inherits CalculatorBase
 
 @code { private string calc_HelpBanner; }
 <Styled @bind-Classname="@calc_HelpBanner" MediaQuery="MediaQueries.Mobile">
@@ -170,7 +168,7 @@
                 @if (CurrentCount > 0)
                 {
                     <p>@CurrentCount tiles generated.</p>
-                    <p>Copy this data and paste it into your hideout file. <i>Don't know how?</i> Check the <a href="/Information"><b>Information</b></a> section.</p>
+                    <p>Copy this data and paste it into your hideout file.</p>
                 }
 
             </div>
