@@ -1,4 +1,4 @@
-﻿**0.3.0 - Calculator UI Improvements**
+﻿**0.3.0 - Mobile Update**
 - Website looks better on mobile
 - Added Oriath ground to calculator
 
