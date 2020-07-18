@@ -28,13 +28,14 @@ Anything can be used poorly. I'll add an option to opt-in to that if we get ther
 **Okay, so like those optional "sharing data" checkboxes *that start as unchecked.* I am happy with that.** <br/>
 Glad to hear.
 
-**Browsing the website some more, the roadmap mentions "Login/profile, data and hideout saving." If that is implemented, how are you going to make that GDPR compliant?**<br />
+**Browsing the website some more, the roadmap mentions "Online Profile. Create an account and save hideout floor setups." If that is implemented, how are you going to make that GDPR compliant?**<br />
 For that, I would use a third-party identity and data solution, probably brainCloud. A login/signup and profile page would be added. You would be able to export and delete your data, such as save files and the account itself. And that would be everything needed for reasonable compliance. But a feature like that would come way later, and would only be justified when sophisticated hideout design features are added to the website. 
 
-**What if I forget I made an account on this website, or become incapacitated to the point I can't delete my account?**<br />
+**What if I forget I made an account on this website, or become incapacitated to the point that I can't delete my account?**<br />
 Suppose the system will also delete accounts that have become inactive. I am not a fan of the concept of automatic deletions, from a bad experience of an account being automatically deleted. But, as long as people aren't surprised by it, and can easily re-create their account by importing their personally saved copies of that data, it sounds like it could be great implementation. 
 
-**Can I get a tl;dr?**<br />
-This website doesn't have your data. If it ever does, it will be in a reasonable way.
+**As a thought experiment, instead of using third-party tools, why don't you store all the cookie, analytics, and profile data on the website with no session memory? Allow people to export and import that data from their machine each time they visit and leave the site, so all data is stored on the computer of the current user. The website maintainer can't see the data and make decisions on it, and it would be buggier and harder to test internally. But still, it's not like this website provides a valuable service or is monetized directly.**<br />
+That's a very cool idea. I could delete this privacy policy page, and add instructions on how to export and import the data between sessions.
+
 
 <br/><br/>
