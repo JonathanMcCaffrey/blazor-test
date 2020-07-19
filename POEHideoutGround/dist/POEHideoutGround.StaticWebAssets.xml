@@ -1,4 +1,0 @@
-﻿<StaticWebAssets Version="1.0">
-  <ContentRoot BasePath="_content/MatBlazor" Path="/Users/jonathanmccaffrey/.nuget/packages/matblazor/2.6.2/build/../staticwebassets/" />
-  <ContentRoot BasePath="/" Path="/Users/jonathanmccaffrey/repos/MyGitHub/blazor-test/POEHideoutGround/bin/Release/netstandard2.1/wwwroot/" />
-</StaticWebAssets>
