@@ -1,4 +1,8 @@
 ﻿@page "/"
 
 
-<POEHideoutGround.Pages.Calculator.Calculator/>
+<POEHideoutGround.Pages.Calculator.Calculator />
+
+@code {
+    protected override bool ShouldRender() => false;
+}

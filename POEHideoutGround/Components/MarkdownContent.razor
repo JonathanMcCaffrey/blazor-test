@@ -1,3 +1,6 @@
 ﻿@inherits MarkdownContentBase
-
 @((MarkupString)Markdown)
+
+@code {
+    protected override bool ShouldRender() => false;
+}
