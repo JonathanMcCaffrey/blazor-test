@@ -1,7 +1,6 @@
 ﻿@page "/road-map"
 
 <style>
-
     .demo-mat-card {
         max-width: 400px;
     }
@@ -14,8 +13,6 @@
         margin: 0px;
     }
 </style>
-
-
 
 @code { string roadmap_grid;}
 <Styled @bind-Classname="@roadmap_grid">
@@ -32,7 +29,6 @@
     grid-template-columns: auto auto;
     grid-gap: 40px;
 </Styled>
-
 
 <div class="@roadmap_grid">
     <div class="card" style="width: 18rem;">

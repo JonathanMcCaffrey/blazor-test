@@ -25,6 +25,7 @@
     <Folder Include="wwwroot\images\hideout\" />
     <Folder Include="wwwroot\images\faq\" />
     <Folder Include="wwwroot\images\tile\" />
+    <Folder Include="Pages\Calculator\Calculator\" />
   </ItemGroup>
 
 </Project>
