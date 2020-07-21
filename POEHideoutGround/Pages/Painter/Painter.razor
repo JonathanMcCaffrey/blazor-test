@@ -1,0 +1,66 @@
+﻿@page "/painter"
+@inherits PainterBase
+
+@code { private string calc_PainterHelpBanner; }
+<Styled @bind-Classname="@calc_PainterHelpBanner" MediaQuery="MediaQueries.Mobile">
+    display:none;
+</Styled>
+
+<div class="@calc_PainterHelpBanner alert alert-primary" role="alert">
+    This is a canvas for editing hideout floors for the <a href="https://pathofexile.gamepedia.com/Celestial_Nebula_Hideout"><b>Celestial Nebula Hideout</b></a> ground. <b>This is not a comprehensive hideout design tool,</b> but more of a branching off point to get you started!
+    <br /><br />
+    If your not sure how this tool works, check the <a href="/Information"><b>Information</b></a> section.
+</div>
+
+
+<label>Brush Size</label>
+<select class="form-control" @bind="@BrushSize">
+    <option value=0 selected>Large</option>
+    <option value=1>Medium</option>
+    <option value=2>Small</option>
+</select>
+
+<label>Brush</label>
+
+
+@if (BrushData != null)
+{
+    <select class="form-control" @bind="@SelectedBrushKey">
+
+        @if (BrushData != null)
+        {
+            @foreach (var tile in BrushData)
+            {
+                <option value="@tile.Key">@tile.Name @tile.DisplayVar</option>
+            }
+        }
+    </select>
+}
+
+
+@code { string painter_Container;}
+<Styled @bind-Classname="@painter_Container">
+    border: 3px solid green;
+
+    width: 391px;
+    height: 391px;
+</Styled>
+
+
+<div class="@painter_Container" @onmousedown="OnMouseDown" @onmouseup="OnMouseUp" @onmouseout="OnMouseOut">
+    @for (int x = 0; x < 17; x++)
+    {
+        @for (int y = 0; y < 17; y++)
+        {
+            <PaintTile SelectedBrush="@SelectedBrush" IsPainting=@IsPainting XPosition=@x YPosition=@y/>
+        }
+
+    }
+
+</div>
+
+
+<br />
+<br />
+
+

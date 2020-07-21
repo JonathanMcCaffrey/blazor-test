@@ -26,6 +26,9 @@
     <Folder Include="wwwroot\images\faq\" />
     <Folder Include="wwwroot\images\tile\" />
     <Folder Include="Pages\Calculator\Calculator\" />
+    <Folder Include="Pages\Painter\" />
+    <Folder Include="Pages\Painter\PaintTile\" />
+    <Folder Include="Pages\Painter\PaintBrush\" />
   </ItemGroup>
 
 </Project>

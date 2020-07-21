@@ -1,0 +1,33 @@
+﻿@inherits PaintTileBase
+
+    <Styled @bind-Classname="@painttile_Container">
+        width: 23px;
+        height: 23px;
+        position: relative;
+        display:block;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+        supported by Chrome, Edge, Opera and Firefox */
+    </Styled>
+
+<Styled @bind-Classname="@painttile_Position">
+    top:@XPosition;
+    left:@YPosition;
+</Styled>
+
+<Styled @bind-Classname="@painttile_Highlight">
+    border: 2px solid @TileColour;
+</Styled>
+
+
+<Styled @bind-Classname="@painttile_Image">
+    background-image: url("images/tile/@TileImage");
+</Styled>
+
+
+<div class="@painttile_Image @painttile_Container @painttile_Position @painttile_Highlight @painttile_Image" @onclick="OnClick" @onmouseover="OnMouseOver" @onmouseout="OnMouseOut">@Label</div>
+
