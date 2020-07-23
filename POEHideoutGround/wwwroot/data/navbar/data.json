@@ -1,0 +1,64 @@
+{
+  "topics": [
+    {
+      "displayName": "Calculator",
+      "uniqueId": "calculator",
+      "weight": 0,
+      "dataIcon": "oi-calculator"
+    },
+    {
+      "displayName": "Importer",
+      "uniqueId": "importer",
+      "weight": 1,
+      "dataIcon": "clarity:import-line"
+    },
+    {
+      "displayName": "Painter",
+      "uniqueId": "painter",
+      "weight": 2,
+      "dataIcon": "oi-brush"
+    },
+    {
+      "displayName": "About",
+      "uniqueId": "about",
+      "weight": 3,
+      "dataIcon": "oi-info"
+    },
+    {
+      "displayName": "Change Log",
+      "uniqueId": "change-log",
+      "weight": 4,
+      "dataIcon": "carbon:change-catalog"
+    },
+    {
+      "displayName": "Experimental",
+      "uniqueId": "experimental",
+      "weight": 5,
+      "dataIcon": "ic:twotone-science"
+    },
+    {
+      "displayName": "FAQ",
+      "uniqueId": "faq",
+      "weight": 6,
+      "dataIcon": "oi-comment-square"
+    },
+    {
+      "displayName": "Information",
+      "uniqueId": "information",
+      "weight": -1,
+      "dataIcon": "oi-book"
+    },
+    {
+      "displayName": "Privacy Policy",
+      "uniqueId": "privacy-policy",
+      "weight": 8,
+      "dataIcon": "oi-eye"
+    },
+    {
+      "displayName": "Road Map",
+      "uniqueId": "road-map",
+      "weight": 9,
+      "dataIcon": "oi-globe"
+    }
+  ]
+}

@@ -1,4 +1,6 @@
-﻿<div style="display:flex;flex-direction:column;">
+﻿@inherits NavMenuBase
+
+<div style="display:flex;flex-direction:column;">
     <div class="top-row pl-4 navbar navbar-dark">
         <a class="navbar-brand" href="">POEHideoutGround</a>
         <button class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -7,12 +9,16 @@
     </div>
 
     <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+
         <ul class="nav flex-column">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    
+                    <span class="iconify" data-icon="clarity:import-line"></span>
                     <span class="oi oi-calculator" aria-hidden="true"></span> Calculator
                 </NavLink>
             </li>
+
 
 
             <li class="nav-item px-3">
@@ -70,15 +76,3 @@
     </div>
 </div>
 
-@code {
-    private bool collapseNavMenu = true;
-
-    public string versionNumber = "0.3.0";
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}

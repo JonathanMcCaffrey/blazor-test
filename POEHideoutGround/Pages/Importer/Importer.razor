@@ -1,0 +1,10 @@
+@page "/importer"
+@using BlazorInputFile
+@inherits ImporterBase
+
+<p>Importer Page</p>
+
+<InputFile />
+
+
+<a href=@((string)($"data:plain/text;charset=utf-8,{UploadedDataHideoutFormat}") ) download="YourNewHideout.hideout">Export</a>
