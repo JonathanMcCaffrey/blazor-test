@@ -16,9 +16,9 @@ namespace POEHideoutGround.Shared.NavMenu
 
     public string versionNumber = "0.3.0";
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    protected string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
+    protected void ToggleNavMenu()
     {
       collapseNavMenu = !collapseNavMenu;
     }
