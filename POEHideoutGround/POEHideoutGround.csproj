@@ -4,16 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
     <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
     <UseBlazorWebAssembly>true</UseBlazorWebAssembly>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="Data\TileData.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BlazorInputFile" Version="0.2.0" />
     <PackageReference Include="BlazorStyled" Version="3.0.0" />
-    <PackageReference Include="Markdig" Version="0.20.0" />
+    <PackageReference Include="Markdig" Version="0.21.1" />
     <PackageReference Include="MatBlazor" Version="2.6.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0-preview.7.20365.19" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0-preview.7.20365.19" PrivateAssets="all" />
