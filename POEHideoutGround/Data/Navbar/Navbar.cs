@@ -4,7 +4,7 @@ namespace POEHideoutGround.Data.Navbar
 {
   public class Navbar
   {
-    public List<Topic> Topics;
+    public List<Section> Sections;
 
   }
 

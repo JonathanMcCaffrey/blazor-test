@@ -6,7 +6,7 @@ using POEHideoutGround.Data.Navbar;
 
 namespace POEHideoutGround.Shared.NavMenu
 {
-  public class NavMenuBase : ComponentBase
+  public partial class NavMenu : ComponentBase
   {
 
     [Inject]
@@ -25,11 +25,11 @@ namespace POEHideoutGround.Shared.NavMenu
 
 
 
-    Navbar Navbar { get; set; }
+    public Navbar Navbar { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-      Navbar = await Http.GetJsonAsync<Navbar>("data/data.json");
+      Navbar = await Http.GetJsonAsync<Navbar>("data/navbar/data.json");
     }
 
 
