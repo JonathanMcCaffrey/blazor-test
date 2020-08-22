@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MatBlazor;
 using BlazorStyled;
-
+using POEHideoutGround.Data;
+  
 namespace POEHideoutGround
 {
   public class Program
@@ -29,6 +30,7 @@ namespace POEHideoutGround
 
       builder.Services.AddBlazorStyled();
 
+            builder.Services.AddSingleton(new ApplicationState());
 
       await builder.Build().RunAsync();
     }
