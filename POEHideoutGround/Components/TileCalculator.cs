@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace POEHideoutGround.Components
 {
-    public class TileCalculatorBase : ComponentBase
+    public partial class TileCalculator : ComponentBase
     {
         [Parameter]
         public RenderFragment ChildContent { get; set; }

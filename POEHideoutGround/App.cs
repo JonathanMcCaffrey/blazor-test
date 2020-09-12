@@ -1,30 +1,40 @@
-
-using System;
 using System.Net.Http;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Text;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Components;
+using MatBlazor;
 
 
 namespace POEHideoutGround
 {
-  public partial class App
-  {
-
-
-    private string Example {get; set;}
-
-    [Inject]
-    private HttpClient Http { get; set; }
-    
-    protected override async Task OnInitializedAsync()
+    public partial class App
     {
-      }
 
-  }
+
+        [Inject]
+        private HttpClient Http { get; set; }
+
+
+        MatTheme lightTheme = new MatTheme()
+        {
+            Primary = "#39796b",
+            Secondary = "#b4a647",
+            OnPrimary = "#ffffff",
+            OnSecondary = "#000000",
+            OnSurface = "#000000",
+            Surface = "#ffffff"
+
+        };
+
+        MatTheme darkTheme = new MatTheme()
+        {
+            Primary = "#00251a",
+            Secondary = "#524a00",
+            OnPrimary = "#ffffff",
+            OnSecondary = "#ffffff",
+            OnSurface = "#ffffff",
+            Surface= "#12120C",
+            
+        };
+
+    }
 }

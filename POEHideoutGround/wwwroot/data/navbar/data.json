@@ -10,7 +10,7 @@
       "displayName": "Importer",
       "uniqueId": "importer",
       "weight": 1,
-      "dataIcon": "clarity:import-line"
+      "dataIcon": "oi-loop-square"
     },
     {
       "displayName": "Painter",
@@ -28,13 +28,14 @@
       "displayName": "Change Log",
       "uniqueId": "change-log",
       "weight": 4,
-      "dataIcon": "carbon:change-catalog"
+      "dataIcon": "oi-clipboard"
     },
     {
       "displayName": "Experimental",
       "uniqueId": "experimental",
       "weight": 5,
-      "dataIcon": "ic:twotone-science"
+      "dataIcon": "oi-beaker"
+
     },
     {
       "displayName": "FAQ",
@@ -47,12 +48,6 @@
       "uniqueId": "information",
       "weight": -1,
       "dataIcon": "oi-book"
-    },
-    {
-      "displayName": "Privacy Policy",
-      "uniqueId": "privacy-policy",
-      "weight": 8,
-      "dataIcon": "oi-eye"
     },
     {
       "displayName": "Road Map",

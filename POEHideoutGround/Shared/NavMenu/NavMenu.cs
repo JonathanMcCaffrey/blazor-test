@@ -1,6 +1,5 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using MatBlazor;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using POEHideoutGround.Data.Navbar;

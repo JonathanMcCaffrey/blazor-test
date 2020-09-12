@@ -64,7 +64,7 @@
             <br /><br />
             <TileCalculator TileTypeName="SubOriath" @bind-SelectedTile="SelectedOriathSubTile" TileData=@oriathData DefaultTileData=@DefaultOriathSubTile>
                 <br /><br />
-                <div style="background-color:white">
+                <div>
                     <label for="SubOriath">Pattern Choice</label>
                     <select class="form-control" @bind="@SelectedPattern">
                         <option value=0>Vertical Lines</option>
@@ -97,7 +97,6 @@
                 width: 100%;
                 overflow-y: hidden;
                 overflow-x: hidden;
-                background-color: white;
             </Styled>
 
 
@@ -107,7 +106,6 @@
                     width: 100%;
                     overflow-y: hidden;
                     overflow-x: hidden;
-                    background-color: white;
                 </Styled>
 
                 <pre class="@calc_rawData">@LayoutData</pre>
@@ -123,7 +121,6 @@
                 display: none;
                 padding: 6px;
                 width: 100%;
-                background-color:white;
             </Styled>
 
             <div class="@mobileInfoContainer">
@@ -147,7 +144,6 @@
                 display: block;
                 padding: 6px;
                 width: 100%;
-                background-color:white;
             </Styled>
 
             <div class="@infoContainer">
@@ -160,9 +156,10 @@
                 </Styled>
 
                 <div class="@calc_buttonContainer">
-                    <button class="btn btn-primary" @onclick="Generate">Generate</button>
-                    <button disabled="@HasNoTiles" class="btn btn-primary" @onclick="Clear">Clear</button>
-                    <button disabled="@HasNoTiles" class="btn btn-primary" @onclick="CopyTextToClipboard">Copy</button>
+
+                    <MatButton Raised="true"  @onclick="Generate">Generate</MatButton>
+                    <MatButton Raised="true" Disabled="@HasNoTiles" @onclick="Clear">Clear</MatButton>
+                    <MatButton Raised="true" Disabled="@HasNoTiles" @onclick="CopyTextToClipboard">Copy</MatButton>
                 </div>
 
                 @if (CurrentCount > 0)

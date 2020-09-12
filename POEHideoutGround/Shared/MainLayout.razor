@@ -1,21 +1,34 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="sidebar">
-    <NavMenu />
+
+<div style="width: 100vw; height: 100vh;">
+    <MatAppBarContainer Style="width: 100%; height: 100%;">
+        <MatAppBar Fixed="true">
+            <MatAppBarRow>
+                <MatAppBarSection>
+                    <MatIconButton Icon="menu"></MatIconButton>
+                    <MatAppBarTitle>POE Hideout Ground</MatAppBarTitle>
+                </MatAppBarSection>
+                <MatAppBarSection Align="@MatAppBarSectionAlign.End">
+                    <MatIconButton Icon="favorite"></MatIconButton>
+                </MatAppBarSection>
+            </MatAppBarRow>
+        </MatAppBar>
+
+        <MatAppBarContent Style="width: 100%; height: 100%;">
+            <div style="display:grid;grid-template-columns:20% 80%;width:100%;height:100%;">
+                <div style="width:100%;overflow-y:auto">
+                    <NavMenu />
+                </div>
+
+                <div style="width:100%;overflow-y:auto">
+                    <MatCard>
+                        @Body
+                        </MatCard>
+                </div>
+            </div>
+
+        </MatAppBarContent>
+    </MatAppBarContainer>
 </div>
 
-@code { string main_Container; }
-<Styled @bind-Classname="@main_Container">
-    padding: 8px;
-    width: 800px;
-    max-width: 100%;
-    overflow: none;
-</Styled>
-
-<Styled Classname="@main_Container" MediaQuery="MediaQueries.LargerThanMobile">
-    padding: 24px;
-</Styled>
-
-<div class="@main_Container">
-    @Body
-</div>
