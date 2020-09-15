@@ -23,5 +23,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Components\TileCalculator.razor" />
+    <Content Remove="Shared\AppBar\NavMenu.razor" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Shared\AppBar\" />
   </ItemGroup>
 </Project>

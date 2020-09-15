@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
 using POEHideoutGround.Data.Navbar;
 
-namespace POEHideoutGround.Shared.NavMenu
+namespace POEHideoutGround.Shared.AppBar
 {
-    public partial class NavMenu : ComponentBase
+    public partial class AppBar : ComponentBase
     {
 
         [Inject]

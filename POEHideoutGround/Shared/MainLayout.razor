@@ -10,24 +10,18 @@
                     <MatAppBarTitle>POE Hideout Ground</MatAppBarTitle>
                 </MatAppBarSection>
                 <MatAppBarSection Align="@MatAppBarSectionAlign.End">
-                    <MatIconButton Icon="favorite"></MatIconButton>
+                    <MatIconButton Icon="brightness_4"></MatIconButton>
                 </MatAppBarSection>
             </MatAppBarRow>
         </MatAppBar>
 
         <MatAppBarContent Style="width: 100%; height: 100%;">
-            <div style="display:grid;grid-template-columns:20% 80%;width:100%;height:100%;">
-                <div style="width:100%;overflow-y:auto">
-                    <NavMenu />
-                </div>
-
-                <div style="width:100%;overflow-y:auto">
-                    <MatCard>
-                        @Body
-                        </MatCard>
-                </div>
-            </div>
-
+            <NavMenu>
+                <MatCard>
+                    @Body
+                </MatCard>
+            </NavMenu>
+           
         </MatAppBarContent>
     </MatAppBarContainer>
 </div>
