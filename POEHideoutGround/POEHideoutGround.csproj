@@ -22,7 +22,6 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="Components\TileCalculator.razor" />
     <Content Remove="Shared\AppBar\NavMenu.razor" />
   </ItemGroup>
   <ItemGroup>
