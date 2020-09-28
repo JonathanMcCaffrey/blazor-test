@@ -1,0 +1,47 @@
+﻿
+
+.container {
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 3fr 1fr 1fr;
+  grid-gap: 10px;
+
+  grid-template-areas:
+      "options image"
+      "options output"
+      "options buttons"      
+      "... info";
+}
+
+.options { 
+    grid-area: options;
+    background-color: red;
+}
+
+
+.image { 
+    grid-area: image;
+    background-color: green;
+}
+
+
+.output { 
+    grid-area: output;
+    background-color: blue;
+}
+
+
+.buttons { 
+    grid-area: buttons;
+    background-color: orange;
+}
+
+.info { 
+    grid-area: info;
+    background-color: purple;
+}
+
+
+
+
