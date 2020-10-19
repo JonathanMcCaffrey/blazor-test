@@ -1,151 +1,62 @@
 ﻿@page "/calculator"
-@inherits CalculatorBase
 
-@code { private string calc_HelpBanner; }
+<style>
+    .banner {
+        border: 2px solid brown;
+    }
 
-<div class="@calc_HelpBanner alert alert-primary" role="alert">
-    This calculator is for editing the <a href="https://pathofexile.gamepedia.com/Celestial_Nebula_Hideout"><b>Celestial Nebula Hideout</b></a> ground. <b>This is not a comprehensive hideout design tool,</b> but more of a branching off point to get you started!
-    <br /><br />
-    If your not sure how the calculator works, check the <a href="/Information"><b>Information</b></a> section.
+    .calcLayout {
+        display: grid;
+        grid-template-columns: 65% 35%;
+        grid-template-areas: "hideout language" "ground calc" ". buttons"
+    }
+
+    .hideout {
+        grid-area: hideout;
+        border: 2px solid red;
+    }
+
+    .language {
+        grid-area: language;
+        border: 2px solid blue;
+    }
+
+    .ground {
+        grid-area: ground;
+        border: 2px solid orange;
+    }
+
+    .calc {
+        grid-area: calc;
+        border: 2px solid cyan;
+    }
+
+    .buttons {
+        grid-area: buttons;
+        border: 2px solid green;
+    }
+</style>
+
+<div class="banner">
+    Banner
 </div>
 
-
-@code { private string calc_Container; }
-
-<div class="container">
-    <div class="options">
-        asd
-
+<div class="calcLayout">
+    <div class="hideout">
+        Hideout
 
     </div>
-    <div class="image">
-
-
-        asd
+    <div class="language">
+        Language
     </div>
-    <div class="output">
-
-        asd
-
+    <div class="ground">
+        Ground
+    </div>
+    <div class="calc">
+        Calc
     </div>
     <div class="buttons">
-
-        asd
-
+        Buttons
     </div>
-
-    <div class="info">
-
-        asd
-
-    </div>
-
-
-
 
 </div>
-
-    <div class="@calc_Container">
-
-        @code { private string calc_tileArea; }
-
-        <div class="@calc_tileArea">
-            <TileCalculator TileTypeName="Ground" @ref="GroundComponent" CheckedByDefault=true @bind-SelectedTile="SelectedGroundTile" TileData=@groundData DefaultTileData=@DefaultGroundTile />
-            <TileCalculator TileTypeName="Water" @bind-SelectedTile="SelectedWaterTile" TileData=@waterData DefaultTileData=@DefaultWaterTile />
-            <TileCalculator TileTypeName="Grass Patches" @bind-SelectedTile="SelectedGrassPatchesTile" TileData=@grassPatchesData DefaultTileData=@DefaultGrassPatchesTile>
-                <br /><br />
-                <div>
-                    <label>Placement Chaos</label>
-                    <div>
-                        <input class="form-control" type="number" @bind="GrassPlacementChaos">
-                    </div>
-                    <small id="chaosHelp" class="form-text text-muted">Randomness of the placement, for more organically placed grass.</small>
-                </div>
-                <br />
-                <div>
-                    <label>Extra Spacing</label>
-                    <div>
-                        <input class="form-control" type="number" @bind="GrassExtraSpacing">
-                    </div>
-                    <small id="spacingHelp" class="form-text text-muted">Extra spacing between grass, to spread out grass patches.</small>
-                </div>
-            </TileCalculator>
-
-            <TileCalculator TileTypeName="Oriath" @bind-SelectedTile="SelectedOriathTile" TileData=@oriathData DefaultTileData=@DefaultOriathTile>
-                <br /><br />
-                <TileCalculator TileTypeName="SubOriath" @bind-SelectedTile="SelectedOriathSubTile" TileData=@oriathData DefaultTileData=@DefaultOriathSubTile>
-                    <br /><br />
-                    <div>
-                        <label for="SubOriath">Pattern Choice</label>
-                        <select class="form-control" @bind="@SelectedPattern">
-                            <option value=0>Vertical Lines</option>
-                            <option value=1>Horizontal Lines</option>
-                            <option value=2 selected>Cross Pattern</option>
-                            <option value=3>Checker Pattern</option>
-                        </select>
-                    </div>
-                </TileCalculator>
-            </TileCalculator>
-
-        </div>
-
-        @code { string calc_buttonBox; }
-
-        <div class="@calc_buttonBox">
-            <div style="display: grid;width: 100%;height: 100%;grid-template-rows: 70% 30%">
-
-
-
-                @code { string calc_rawdataBox;}
-
-                <div class="@calc_rawdataBox">
-                    @code { string calc_rawData; }
-
-
-                    <pre class="@calc_rawData">@LayoutData</pre>
-                </div>
-
-
-
-                @code { string mobileInfoContainer; }
-
-
-                <div class="@mobileInfoContainer">
-
-                    <button class="btn btn-primary" @onclick="GenerateAndCopy">Generate and Copy</button>
-
-                    @if (CurrentCount > 0)
-                    {
-                        <p>@CurrentCount tiles generated.</p>
-                        <p>Data copied to clipboard. Share this data with your desktop computer, and copy that data into your hideout file.</p>
-                    }
-
-                </div>
-
-
-                @code { string infoContainer; }
-
-
-                <div class="@infoContainer">
-                    @code { string calc_buttonContainer;}
-
-                    <div class="@calc_buttonContainer">
-
-                        <MatButton Raised="true" @onclick="Generate">Generate</MatButton>
-                        <MatButton Raised="true" Disabled="@HasNoTiles" @onclick="Clear">Clear</MatButton>
-                        <MatButton Raised="true" Disabled="@HasNoTiles" @onclick="CopyTextToClipboard">Copy</MatButton>
-                    </div>
-
-                    @if (CurrentCount > 0)
-                    {
-                        <p>@CurrentCount tiles generated.</p>
-                        <p>Copy this data and paste it into your hideout file.</p>
-                    }
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-

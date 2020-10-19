@@ -25,7 +25,6 @@
 
 <MatHidden Breakpoint="@MatBreakpoint.SM" Direction="@MatHiddenDirection.Up">
     <ChildContent>
-
         <MatDrawerContainer Style="width: 100vw; height: 100vh;">
             <MatDrawer @bind-Opened="@Opened" Mode="@MatDrawerMode.Modal">
                 <MatNavMenu>
@@ -39,7 +38,10 @@
 
                             @foreach (var section in Navbar.Sections)
                             {
-                                <MatNavItem AllowSelection="true" Href="@section.UniqueId"><span class="oi @section.DataIcon" aria-hidden="true"></span> &nbsp; @section.DisplayName</MatNavItem>
+                                if (!section.Tags.Contains("hidden"))
+                                {
+                                    <MatNavItem AllowSelection="true" Href="@section.UniqueId"><span class="oi @section.DataIcon" aria-hidden="true"></span> &nbsp; @section.DisplayName</MatNavItem>
+                                }
                             }
                         }
                     </MatNavSubMenuList>
@@ -68,7 +70,10 @@
 
                             @foreach (var section in Navbar.Sections)
                             {
-                                <MatNavItem AllowSelection="true" Href="@section.UniqueId"><span class="oi @section.DataIcon" aria-hidden="true"></span> &nbsp; @section.DisplayName</MatNavItem>
+                                if (!section.Tags.Contains("hidden"))
+                                {
+                                    <MatNavItem AllowSelection="true" Href="@section.UniqueId"><span class="oi @section.DataIcon" aria-hidden="true"></span> &nbsp; @section.DisplayName</MatNavItem>
+                                }
                             }
                         }
                     </MatNavSubMenuList>

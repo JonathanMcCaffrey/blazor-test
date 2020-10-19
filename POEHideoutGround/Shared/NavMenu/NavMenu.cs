@@ -12,8 +12,6 @@ namespace POEHideoutGround.Shared.NavMenu
         [Inject]
         private HttpClient Http { get; set; }
 
-
-
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         private bool collapseNavMenu = true;
@@ -32,20 +30,11 @@ namespace POEHideoutGround.Shared.NavMenu
             collapseNavMenu = !collapseNavMenu;
         }
 
-
-
         public Navbar Navbar { get; set; }
-
 
 
         protected override async Task OnInitializedAsync()
         {
-
-            // Why is this no longer working...
-            //Navbar  = await Http.GetJsonAsync<Navbar>("data/navbar/data.json");
-
-
-            // Why does this work???
             var text = await Http.GetStringAsync("data/navbar/data.json");
             Navbar = JsonConvert.DeserializeObject<Navbar>(text);
         }

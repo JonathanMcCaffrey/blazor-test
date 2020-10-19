@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Data\TileData.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.0.0" />
     <PackageReference Include="Markdig" Version="0.22.0" />
     <PackageReference Include="MatBlazor" Version="2.7.0" />

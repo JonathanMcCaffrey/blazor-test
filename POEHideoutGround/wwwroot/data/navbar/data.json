@@ -10,13 +10,19 @@
       "displayName": "Importer",
       "uniqueId": "importer",
       "weight": 1,
-      "dataIcon": "oi-loop-square"
+      "dataIcon": "oi-loop-square",
+      "tags": [
+        "hidden"
+      ]
     },
     {
       "displayName": "Painter",
       "uniqueId": "painter",
       "weight": 2,
-      "dataIcon": "oi-brush"
+      "dataIcon": "oi-brush",
+      "tags": [
+        "hidden"
+      ]
     },
     {
       "displayName": "About",
@@ -34,7 +40,10 @@
       "displayName": "Experimental",
       "uniqueId": "experimental",
       "weight": 5,
-      "dataIcon": "oi-beaker"
+      "dataIcon": "oi-beaker",
+      "tags": [
+        "hidden"
+      ]
 
     },
     {
